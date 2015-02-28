@@ -22,7 +22,6 @@ module ModelInfo
     end
 
     def show
-      logger.info "=========#{params.inspect}"
       @resource=params['resource'].constantize
       @data=params['data']
     end
@@ -33,7 +32,7 @@ module ModelInfo
         @model_string= k.to_s if params[k].is_a?(Hash)
         arry.push(v) if params[k].is_a?(Hash)
       end
-      @model_class=@model_string.classify.constantize
+      @model_class=params['model_class'].constantize
       @model_object_id=params[@model_string]['id']
       @model_object=@model_class.find(@model_object_id)
       @model_object.update(permit_params)

@@ -20,8 +20,6 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.2.0"
 
   s.add_development_dependency "sqlite3"
-  s.add_development_dependency "better_errors"
-
-  s.add_development_dependency 'binding_of_caller'
   s.add_development_dependency 'bootstrap'
+  s.add_development_dependency 'kaminari'
 end
