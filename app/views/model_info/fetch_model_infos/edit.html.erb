@@ -1,0 +1,12 @@
+<% @data=@resource.find(@data) %>
+<%= form_for @data, url: fetch_model_infos_update_path(@resource), method: :patch do |f| %>
+    <% (@resource.column_names - %w(created_at updated_at)).each do |resource_field| %>
+        <div class="form-group">
+          <%= f.label resource_field %>
+          <div class="form-group">
+            <%= f.text_field resource_field %>
+          </div>
+        </div>
+    <% end %>
+    <button class="btn btn-primary" type="submit">Save Changes</button>
+<% end %>
