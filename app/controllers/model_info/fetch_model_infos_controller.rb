@@ -8,6 +8,8 @@ module ModelInfo
         array.push(x)
         @model_array=array
       end
+      @model_array.delete(@model_array.last)
+      @model_array
     end
 
     def display
@@ -20,6 +22,7 @@ module ModelInfo
     end
 
     def show
+      logger.info "=========#{params.inspect}"
       @resource=params['resource'].constantize
       @data=params['data']
     end
@@ -34,7 +37,7 @@ module ModelInfo
       @model_object_id=params[@model_string]['id']
       @model_object=@model_class.find(@model_object_id)
       @model_object.update(permit_params)
-      redirect_to fet
+      redirect_to fetch_model_infos_show_path(resource: @model_class)
     end
 
     def destroy
