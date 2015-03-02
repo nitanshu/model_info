@@ -1,20 +1,23 @@
-<table class="table table-hover">
+<table class="table table-hover table-bordered">
   <tr>
-    <% @resource.column_names.each do |k| %>
-        <th><%= k %></th>
-    <% end %>
-    <th>Actions</th>
+    <th>Attribute</th>
+    <th>Value</th>
   </tr>
-  <% @resource.all.each do |y| %>
+  <% @resource.column_names.each do |k| %>
       <tr>
-        <% @resource.column_names.each do |k| %>
+        <th><%= k %></th>
+        <% @resource.all.each do |y| %>
             <td>
               <%= y.send(k.to_sym) %>
             </td>
+            <% break %>
         <% end %>
-        <td>
-          <%= link_to 'back', fetch_model_infos_index_path %>
-        </td>
       </tr>
   <% end %>
+  <tr>
+    <th>Actions</th>
+    <td>
+      <%= link_to 'back', fetch_model_infos_index_path %>
+    </td>
+  </tr>
 </table>

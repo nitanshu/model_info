@@ -12,6 +12,21 @@ module ModelInfo
       @model_array
     end
 
+    def new
+     @model_new_data = params['model_new_data'].constantize.new
+    end
+
+    def create
+      arry=[]
+      params.each do |k, v|
+        @model_string= k.to_s if params[k].is_a?(Hash)
+        arry.push(v) if params[k].is_a?(Hash)
+      end
+      @model_class=@model_string.classify.constantize
+      @model_class.create(permit_params)
+      redirect_to fetch_model_infos_show_path(resource: @model_class)
+    end
+
     def display
 
     end

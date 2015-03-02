@@ -1,4 +1,5 @@
 <% @data=@resource.find(@data) %>
+<h1>Update Your Profile</h1>
 <div class="jumbotron">
 <%= form_for @data, url: fetch_model_infos_update_path(:model_class => @resource), method: :patch do |f| %>
     <% (@resource.column_names - %w(created_at updated_at)).each do |resource_field| %>
