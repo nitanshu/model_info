@@ -15,7 +15,7 @@
 <div id="tabs">
   <ul class="nav nav-pills">
     <% for model_name in @model_array %>
-        <li><%= link_to model_name, fetch_model_infos_display_path(:@i => model_name) %></li>
+        <li><%= link_to model_name, fetch_model_infos_display_path(:model_name => model_name) %></li>
     <% end %>
   </ul>
 </div>

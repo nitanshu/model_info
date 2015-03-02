@@ -1,3 +1,4 @@
+<h1>View Your Data</h1>
 <table class="table table-hover table-bordered">
   <tr>
     <th>Attribute</th>
@@ -6,12 +7,7 @@
   <% @resource.column_names.each do |k| %>
       <tr>
         <th><%= k %></th>
-        <% @resource.all.each do |y| %>
-            <td>
-              <%= y.send(k.to_sym) %>
-            </td>
-            <% break %>
-        <% end %>
+        <td><%= @model_data_resource.send(k) %></td>
       </tr>
   <% end %>
   <tr>

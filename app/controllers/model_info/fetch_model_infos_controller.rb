@@ -13,22 +13,20 @@ module ModelInfo
     end
 
     def new
-     @model_new_data = params['model_new_data'].constantize.new
+      @model_new_data = params['model_new_data'].constantize.new
     end
 
     def create
-      arry=[]
       params.each do |k, v|
         @model_string= k.to_s if params[k].is_a?(Hash)
-        arry.push(v) if params[k].is_a?(Hash)
       end
       @model_class=@model_string.classify.constantize
       @model_class.create(permit_params)
-      redirect_to fetch_model_infos_show_path(resource: @model_class)
+      @model_object_id=@model_class.last.id
+      redirect_to fetch_model_infos_show_path(resource: @model_class,data: @model_object_id)
     end
 
     def display
-
     end
 
     def edit
@@ -39,19 +37,19 @@ module ModelInfo
     def show
       @resource=params['resource'].constantize
       @data=params['data']
+      @model_data_resource=@resource.find(@data)
     end
 
     def update
-      arry=[]
       params.each do |k, v|
         @model_string= k.to_s if params[k].is_a?(Hash)
-        arry.push(v) if params[k].is_a?(Hash)
       end
       @model_class=params['model_class'].constantize
       @model_object_id=params[@model_string]['id']
       @model_object=@model_class.find(@model_object_id)
+      logger.info "=====#{params.inspect}=========#{@model_string}====#{@model_class}=======#{@model_object_id}=============#{@model_object}"
       @model_object.update(permit_params)
-      redirect_to fetch_model_infos_show_path(resource: @model_class)
+      redirect_to fetch_model_infos_show_path(resource: @model_class, data: @model_object_id)
     end
 
     def destroy
