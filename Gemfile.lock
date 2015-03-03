@@ -50,8 +50,6 @@ GEM
       activesupport (>= 4.1.0)
     hike (1.2.3)
     i18n (0.7.0)
-    jquery-ui-rails (5.0.3)
-      railties (>= 3.2.16)
     json (1.8.2)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
@@ -115,7 +113,6 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap
-  jquery-ui-rails
   kaminari
   model_info!
   sqlite3

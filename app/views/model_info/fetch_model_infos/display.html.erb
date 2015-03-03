@@ -1,4 +1,4 @@
-<h1><%= parameter= params[:model_name] %></h1>
+<% parameter= params[:model_name] %>
 <table class="table table-hover">
   <tr>
     <% parameter.constantize.column_names.each do |k| %>
@@ -6,7 +6,7 @@
     <% end %>
     <th>Actions</th>
   </tr>
-  <% parameter.constantize.all.each do |y| %>
+  <% @model_pagination.each do |y| %>
       <tr>
         <% parameter.constantize.column_names.each do |k| %>
             <td>
@@ -24,3 +24,5 @@
 <div align="right">
   <b><%= link_to 'Add new Record', fetch_model_infos_new_path(:model_new_data => parameter) %></b>
 </div>
+<%= paginate @model_pagination %>
+<%= page_entries_info @model_pagination %>
