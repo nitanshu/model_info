@@ -1,13 +1,14 @@
 require_dependency "model_info/application_controller"
 module ModelInfo
   class FetchModelInfosController < ApplicationController
+
     def index
      models_tab
+      redirect_to fetch_model_infos_display_url(model_name: @model_array.first)
     end
 
     def new
       models_tab
-      logger.info "=======#{@model_array}=+++=======#{params.inspect  }"
       @model_new_data = params['model_new_data'].constantize.new
     end
 
