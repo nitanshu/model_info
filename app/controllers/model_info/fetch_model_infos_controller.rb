@@ -1,22 +1,18 @@
 require_dependency "model_info/application_controller"
-
 module ModelInfo
   class FetchModelInfosController < ApplicationController
     def index
-      array=[]
-      ActiveRecord::Base.descendants.each do |x|
-        array.push(x)
-        @model_array=array
-      end
-      @model_array.delete(@model_array.last)
-      @model_array
+     models_tab
     end
 
     def new
+      models_tab
+      logger.info "=======#{@model_array}=+++=======#{params.inspect  }"
       @model_new_data = params['model_new_data'].constantize.new
     end
 
     def create
+      models_tab
       params.each do |k, v|
         @model_string= k.to_s if params[k].is_a?(Hash)
       end
@@ -27,15 +23,18 @@ module ModelInfo
     end
 
     def display
+      models_tab
       @model_pagination = params['model_name'].constantize.page(params[:page]).per(10)
     end
 
     def edit
+      models_tab
       @resource=params['resource'].constantize
       @data=params['data']
     end
 
     def show
+      models_tab
       @resource=params['resource'].constantize
       @data=params['data']
       @model_data_resource=@resource.find(@data)
@@ -62,6 +61,16 @@ module ModelInfo
     private
     def permit_params
       params.require(@model_string).permit!
+    end
+
+    def models_tab
+      array=[]
+      ActiveRecord::Base.descendants.each do |x|
+        array.push(x)
+        @model_array=array
+      end
+      @model_array.delete(@model_array.last)
+      @model_array
     end
   end
 end

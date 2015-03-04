@@ -1,5 +1,5 @@
-<div id="show_div">
-  <h1>View Your Data</h1>
+<%= render :partial => 'header' %>
+  <h3>View Your Data</h3>
   <table class="table table-hover table-bordered">
     <tr>
       <th>Attribute</th>
@@ -14,8 +14,7 @@
     <tr>
       <th>Actions</th>
       <td>
-        <%= link_to 'back', fetch_model_infos_index_path %>
+        <%= link_to 'back', fetch_model_infos_display_path(:model_name => @resource) %>
       </td>
     </tr>
   </table>
-</div>
