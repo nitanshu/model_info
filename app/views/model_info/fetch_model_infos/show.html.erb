@@ -1,20 +1,21 @@
 <%= render :partial => 'header' %>
-  <h3>View Your Data</h3>
-  <table class="table table-hover table-bordered">
-    <tr>
-      <th>Attribute</th>
-      <th>Value</th>
-    </tr>
-    <% @resource.column_names.each do |k| %>
-        <tr>
-          <th><%= k %></th>
-          <td><%= @model_data_resource.send(k) %></td>
-        </tr>
-    <% end %>
-    <tr>
-      <th>Actions</th>
-      <td>
-        <%= link_to 'back', fetch_model_infos_display_path(:model_name => @resource) %>
-      </td>
-    </tr>
-  </table>
+<% page=params['page']%>
+<h3>View Your Data</h3>
+<table class="table table-hover table-bordered">
+  <tr>
+    <th>Attribute</th>
+    <th>Value</th>
+  </tr>
+  <% @resource.column_names.each do |k| %>
+      <tr>
+        <th><%= k %></th>
+        <td><%= @model_data_resource.send(k) %></td>
+      </tr>
+  <% end %>
+  <tr>
+    <th>Actions</th>
+    <td>
+      <%= link_to 'back', fetch_model_infos_display_path(:model_name => @resource, :page=> page) %>
+    </td>
+  </tr>
+</table>

@@ -3,7 +3,7 @@ module ModelInfo
   class FetchModelInfosController < ApplicationController
 
     def index
-     models_tab
+      models_tab
       redirect_to fetch_model_infos_display_url(model_name: @model_array.first)
     end
 
@@ -20,13 +20,14 @@ module ModelInfo
       @model_class=@model_string.classify.constantize
       @model_class.create(permit_params)
       @model_object_id=@model_class.last.id
-      redirect_to fetch_model_infos_show_path(resource: @model_class,data: @model_object_id)
+      redirect_to fetch_model_infos_show_path(resource: @model_class, data: @model_object_id)
     end
 
     def display
       models_tab
       @model=params['model_name']
-      @model_pagination = @model.constantize.page(params[:page]).per(10)
+      @page= params['page']
+      @model_pagination = @model.constantize.page(@page).per(10)
     end
 
     def edit
