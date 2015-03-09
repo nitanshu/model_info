@@ -25,7 +25,8 @@ module ModelInfo
 
     def display
       models_tab
-      @model_pagination = params['model_name'].constantize.page(params[:page]).per(10)
+      @model=params['model_name']
+      @model_pagination = @model.constantize.page(params[:page]).per(10)
     end
 
     def edit

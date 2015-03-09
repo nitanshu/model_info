@@ -1,8 +1,10 @@
 <div class="jumbotron">
-  <%= form_for @model_new_data, url: fetch_model_infos_create_path(:model_create_data => @model_new_data), method: :post do |f| %>
+  <%= form_for @model_new_data, url: fetch_model_infos_create_path, method: :post do |f| %>
       <% (@model_new_data.class.column_names - %w(id created_at updated_at)).each do |resource_field| %>
           <div class="form-group">
             <%= f.label resource_field %>
+            <%= hidden_field_tag :model_class, @model_class %>
+            <%= hidden_field_tag :model_create_data, @model_new_data %>
             <div class="form-group">
               <%= f.text_field resource_field %>
             </div>

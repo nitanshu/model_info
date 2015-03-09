@@ -1,7 +1,7 @@
-<h3><%= parameter= params[:model_name] %></h3>
-<div id="as">
+<% parameter= params[:model_name] %>
 <div id="div_<%= parameter %>">
-<table class="table table-hover">
+  <h3><%= parameter %></h3>
+  <table class="table table-hover">
   <tr>
     <% parameter.constantize.column_names.each do |k| %>
         <th><%= k %></th>
@@ -32,5 +32,4 @@
   <%= page_entries_info @model_pagination %>
   </ul>
   </nav>
-</div>
 </div>
