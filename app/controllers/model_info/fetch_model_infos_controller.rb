@@ -9,15 +9,17 @@ module ModelInfo
 
     def new
       models_tab
-      @model_new_data = params['model_new_data'].constantize.new
+      @model_class= params['model_new_data'].constantize
+      @model_new_data = @model_class.new
     end
 
     def create
       models_tab
+      logger.info "+++++++++#{params['model_class']}=============#{params['model_create_data']}"
       params.each do |k, v|
         @model_string= k.to_s if params[k].is_a?(Hash)
       end
-      @model_class=@model_string.classify.constantize
+      @model_class=params['model_class'].constantize
       @model_class.create(permit_params)
       @model_object_id=@model_class.last.id
       redirect_to fetch_model_infos_show_path(resource: @model_class, data: @model_object_id)
