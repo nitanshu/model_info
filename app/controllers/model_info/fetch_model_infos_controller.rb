@@ -15,7 +15,6 @@ module ModelInfo
 
     def create
       models_tab
-      logger.info "+++++++++#{params['model_class']}=============#{params['model_create_data']}"
       params.each do |k, v|
         @model_string= k.to_s if params[k].is_a?(Hash)
       end
@@ -66,16 +65,6 @@ module ModelInfo
     private
     def permit_params
       params.require(@model_string).permit!
-    end
-
-    def models_tab
-      array=[]
-      ActiveRecord::Base.descendants.each do |x|
-        array.push(x)
-        @model_array=array
-      end
-      @model_array.delete(@model_array.last)
-      @model_array
     end
   end
 end
