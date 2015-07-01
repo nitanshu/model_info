@@ -13,7 +13,6 @@ module ModelInfo
     end
 
     def create
-      models_tab
       params.each do |k, v|
         @model_string= k.to_s if params[k].is_a?(Hash)
       end
@@ -24,20 +23,17 @@ module ModelInfo
     end
 
     def display
-      models_tab
       @model=params['model_name']
       @page= params['page']
       @model_pagination = @model.constantize.page(@page).per(10)
     end
 
     def edit
-      models_tab
       @resource=params['resource'].constantize
       @data=params['data']
     end
 
     def show
-      models_tab
       @resource=params['resource'].constantize
       @data=params['data']
       @model_data_resource=@resource.find(@data)
