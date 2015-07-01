@@ -9,15 +9,15 @@ Gem::Specification.new do |s|
   s.version     = ModelInfo::VERSION
   s.authors     = ["nitanshu"]
   s.email       = ["nitanshu@headerlabs.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of ModelInfo."
-  s.description = "TODO: Description of ModelInfo."
+
+  s.summary     = "Summary of ModelInfo."
+  s.description = "Description of ModelInfo."
   s.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
+  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc", "Gemfile"]
+ # s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", "~> 4.2.0"
+  s.add_dependency "rails"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'bootstrap'
