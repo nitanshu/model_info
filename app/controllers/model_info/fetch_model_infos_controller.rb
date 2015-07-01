@@ -1,14 +1,13 @@
 require_dependency "model_info/application_controller"
 module ModelInfo
   class FetchModelInfosController < ApplicationController
+    before_action :models_tab
 
     def index
-      models_tab
       redirect_to fetch_model_infos_display_url(model_name: @model_array.first)
     end
 
     def new
-      models_tab
       @model_class= params['model_new_data'].constantize
       @model_new_data = @model_class.new
     end

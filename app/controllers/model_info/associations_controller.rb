@@ -2,9 +2,9 @@ require_dependency "model_info/application_controller"
 
 module ModelInfo
   class AssociationsController < ApplicationController
-    before_filter :models_tab
-    def new
+    before_action :models_tab
 
+    def new
     end
 
     def index
@@ -16,11 +16,9 @@ module ModelInfo
     end
 
     def create
-
     end
 
     def show
-
       @model_class,@model_object_id,@relational_model,@data,@relational_model_class,@page=params['model_class'].constantize,params['model_object_id'],params['relational_model'],params['data'],params['relational_model_class'].constantize,params[:page]
       @models_data=@model_class.find(@model_object_id)
       @relational_data=@models_data.send(@relational_model)
@@ -28,7 +26,6 @@ module ModelInfo
     end
 
     def edit
-
       @model_class,@model_object_id,@relational_model,@data,@relational_model_class,@page=params['model_class'].constantize,params['model_object_id'],params['relational_model'],params['data'],params['relational_model_class'].constantize,params[:page]
       @models_data=@model_class.find(@model_object_id)
       @relational_data=@models_data.send(@relational_model)
@@ -41,7 +38,6 @@ module ModelInfo
       @relational_data=@models_data.send(@relational_model)
       @single_relational_data=@relational_data.find(@data)
       @model_string=@relational_model.singularize
-      logger.info "====#{@model_class}======#{@model_object_id}========#{@relational_model}=====#{@data}==="
       @single_relational_data.update(permit_params)
       redirect_to associations_show_path(:model_class => @model_class,model_object_id: @model_object_id,relational_model: @relational_model, data: @data)
     end
@@ -54,6 +50,7 @@ module ModelInfo
       @single_relational_data.destroy
       redirect_to :back
     end
+
     private
     def permit_params
       params.require(@model_string).permit!
