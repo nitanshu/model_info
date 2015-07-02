@@ -8,11 +8,10 @@ module ModelInfo
     end
 
     def index
-     @model_class,@model_object_id,@relational_model=params['model_class'].constantize,params['model_object_id'],params['relational_model']
-     @relational_model_class=@relational_model.singularize.classify.constantize
+     @model_class,@model_object_id,@relational_model,@relational_class =params['model_class'].constantize,params['model_object_id'],params['relational_model'], params[:relational_class].constantize
      @models_data=@model_class.find(@model_object_id)
      @relational_data=@models_data.send(@relational_model)
-     @relational_model_pagination=@relational_data.page(params[:page]).per(10)
+     @relational_model_pagination=@relational_class.page(params[:page]).per(10)
     end
 
     def create

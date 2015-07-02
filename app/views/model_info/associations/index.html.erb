@@ -3,14 +3,14 @@
 <% page= params[:page] %>
 <table class="table table-hover">
   <tr>
-    <% @relational_model.singularize.classify.constantize.column_names.each do |k| %>
+    <% @relational_class.column_names.each do |k| %>
         <th><%= k %></th>
     <% end %>
     <th>Actions</th>
   </tr>
   <% @relational_model_pagination.each do |y| %>
       <tr>
-        <% @relational_model_class.column_names.each do |k| %>
+        <% @relational_class.column_names.each do |k| %>
             <td>
               <%= y.send(k.to_sym).class=='String' ?y.send(k.to_sym).truncate(14):y.send(k.to_sym).to_s.truncate(14) %>
             </td>

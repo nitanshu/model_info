@@ -21,12 +21,13 @@
           <%= link_to 'delete', fetch_model_infos_destroy_path(resource: parameter, data: y), data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
         </td>
         <td>
-          <% @relationships_array= parameter.constantize.reflect_on_all_associations.map { |x| x.name }.compact %>
-          <% if @relationships_array.empty? %>
+          <% relationship_hash ={}%>
+          <% relationship_hash = parameter.constantize.reflect_on_all_associations.map{|x| x.name}.zip(parameter.constantize.reflect_on_all_associations.map{|x| x.klass.name}).to_h %>
+          <% if relationship_hash.empty? %>
           <%= 'Sorry no relationship!'%>
           <% else %>
-              <% @relationships_array.each do |r| %>
-                  <%= link_to "#{r}|" , associations_index_path(relational_model: r, model_object_id: y.id, model_class: parameter) %>
+              <% relationship_hash.each do |r,v| %>
+                  <%= link_to "#{r} |" , associations_index_path(relational_model: r, model_object_id: y.id, model_class: parameter, relational_class: v) %>
               <% end %>
           <% end %>
         </td>
