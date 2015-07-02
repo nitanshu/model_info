@@ -32,20 +32,20 @@ module ModelInfo
     end
 
     def update
-      @model_class,@model_object_id,@relational_model,@data=params['model_class'].constantize,params['model_object_id'],params['relational_model'],params['data']
+      @model_class,@model_object_id,@relational_model,@relational_model_class,@data=params['model_class'].constantize,params['model_object_id'],params['relational_model'], params['relational_model_class'].constantize,params['data']
       @models_data=@model_class.find(@model_object_id)
       @relational_data=@models_data.send(@relational_model)
       @single_relational_data=@relational_model_class.find(@data)
       @model_string=@relational_model.singularize
       @single_relational_data.update(permit_params)
-      redirect_to associations_show_path(:model_class => @model_class,model_object_id: @model_object_id,relational_model: @relational_model, data: @data)
+      redirect_to associations_show_path(:model_class => @model_class,model_object_id: @model_object_id,relational_model: @relational_model, relational_model_class: @relational_model_class,data: @data)
     end
 
     def destroy
       @model_class,@model_object_id,@relational_model,@relational_model_class,@data=params['model_class'].constantize,params['model_object_id'],params['relational_model'],params['relational_model_class'].constantize,params['data']
       @models_data=@model_class.find(@model_object_id)
       @relational_data=@models_data.send(@relational_model)
-      @single_relational_data=@relational_model_class.find(@data)
+      @single_relational_data=@relational_model_class.find(@model_object_id)
       @single_relational_data.destroy
       redirect_to :back
     end

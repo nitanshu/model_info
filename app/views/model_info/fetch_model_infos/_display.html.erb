@@ -21,10 +21,13 @@
           <%= link_to 'delete', fetch_model_infos_destroy_path(resource: parameter, data: y), data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
         </td>
         <td>
-          <% relationship_hash ={}%>
-          <% relationship_hash = parameter.constantize.reflect_on_all_associations.map{|x| x.name}.zip(parameter.constantize.reflect_on_all_associations.map{|x| x.klass.name if !x.klass.nil?}).to_h %>
+          <% relationship_hash ={}, a1=[], a2=[]%>
+          <% parameter.constantize.reflect_on_all_associations.each do |d|%>
+              <%  d.options[:polymorphic] ? a1.push(d.active_record.name) : a2.push(d.klass.name) %>
+          <% end %>
+          <% relationship_hash = parameter.constantize.reflect_on_all_associations.map{|x| x.name}.zip(a1+a2).to_h %>
           <% if relationship_hash.empty? %>
-          <%= 'Sorry no relationship!'%>
+              <%= 'Sorry no relationship!'%>
           <% else %>
               <% relationship_hash.each do |r,v| %>
                   <%= link_to "#{r} |" , associations_index_path(relational_model: r, model_object_id: y.id, model_class: parameter, relational_model_class: v) %>
