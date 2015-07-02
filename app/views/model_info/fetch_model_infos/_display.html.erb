@@ -22,12 +22,12 @@
         </td>
         <td>
           <% relationship_hash ={}%>
-          <% relationship_hash = parameter.constantize.reflect_on_all_associations.map{|x| x.name}.zip(parameter.constantize.reflect_on_all_associations.map{|x| x.klass.name}).to_h %>
+          <% relationship_hash = parameter.constantize.reflect_on_all_associations.map{|x| x.name}.zip(parameter.constantize.reflect_on_all_associations.map{|x| x.klass.name if !x.klass.nil?}).to_h %>
           <% if relationship_hash.empty? %>
           <%= 'Sorry no relationship!'%>
           <% else %>
               <% relationship_hash.each do |r,v| %>
-                  <%= link_to "#{r} |" , associations_index_path(relational_model: r, model_object_id: y.id, model_class: parameter, relational_class: v) %>
+                  <%= link_to "#{r} |" , associations_index_path(relational_model: r, model_object_id: y.id, model_class: parameter, relational_model_class: v) %>
               <% end %>
           <% end %>
         </td>
