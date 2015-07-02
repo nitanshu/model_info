@@ -5,6 +5,7 @@ module ModelInfo
       array=[]
       ActiveRecord::Base.descendants.each do |x|
         array.push(x) if x.table_exists?
+        array.delete(ActiveRecord::SchemaMigration)
         @model_array=array
       end
     end
