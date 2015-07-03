@@ -19,13 +19,11 @@
           <%= link_to 'view', associations_show_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y, page: page), class: 'btn btn-info' %>
           <%= link_to 'edit', associations_edit_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y, page: page), class: 'btn btn-warning' %>
           <%= link_to 'delete', associations_destroy_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y), data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+          <%= link_to 'create', fetch_model_infos_new_path(:model_new_data => @model_class), class: 'btn btn-success'%>
         </td>
       </tr>
   <% end %>
 </table>
-<div align="right">
-  <b><%= link_to 'Add new Record', fetch_model_infos_new_path(:model_new_data => @model_class), class: 'btn btn-success'%></b>
-</div>
 <nav>
   <ul class="pagination">
     <li><%= paginate @relational_model_pagination %></li>
