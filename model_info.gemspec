@@ -18,9 +18,8 @@ Gem::Specification.new do |s|
  # s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails"
-
+  s.add_dependency 'bootstrap'
+  s.add_dependency 'kaminari'
+  s.add_dependency 'jquery-rails'
   s.add_development_dependency "sqlite3"
-  s.add_development_dependency 'bootstrap'
-  s.add_development_dependency 'kaminari'
-  s.add_development_dependency 'jquery-rails'
 end
