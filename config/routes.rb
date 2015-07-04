@@ -7,6 +7,8 @@ ModelInfo::Engine.routes.draw do
 
   get 'associations/edit'
 
+  get 'associations/new'
+
   get 'associations/destroy'
 
   patch 'associations/update'

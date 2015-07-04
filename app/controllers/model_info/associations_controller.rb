@@ -5,16 +5,23 @@ module ModelInfo
     before_action :models_tab
 
     def new
+
     end
 
     def index
-     @model_class,@model_object_id,@relational_model,@relational_model_class =params['model_class'].constantize,params['model_object_id'],params['relational_model'], params['relational_model_class'].constantize
+     @model_class,@model_object_id,@relational_model,@relational_model_class,@macro=params['model_class'].constantize,params['model_object_id'],params['relational_model'], params['relational_model_class'].constantize, params['macro']
      @models_data=@model_class.find(@model_object_id)
      @relational_data=@models_data.send(@relational_model)
      @relational_model_pagination=@relational_model_class.page(params[:page]).per(10)
     end
 
     def create
+      @macro,@model_object_id,@relational_model_class=params['macro'],params['model_object_id'],params['relation_model_class']
+      if @macro ='has_one'||'belongs_to'
+
+      else
+
+      end
     end
 
     def show

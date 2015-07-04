@@ -25,15 +25,17 @@
           <% parameter.constantize.reflect_on_all_associations.each do |d|%>
               <%  d.options[:polymorphic] ? a1.push(d.active_record.name) : a2.push(d.klass.name) %>
           <% end %>
-          <% relationship_hash = parameter.constantize.reflect_on_all_associations.map{|x| x.name}.zip(a1+a2).to_h %>
+          <% relationship_hash = parameter.constantize.reflect_on_all_associations.map{|x| [x.name, x.macro]}.zip(a1+a2).to_h %>
+
           <% if relationship_hash.empty? %>
               <%= 'Sorry no relationship!'%>
           <% else %>
               <% relationship_hash.each do |r,v| %>
-                  <%= link_to "#{r} |" , associations_index_path(relational_model: r, model_object_id: y.id, model_class: parameter, relational_model_class: v) %>
+                  <%= link_to "#{r.last} #{r.first} |" , associations_index_path(relational_model: r.first, model_object_id: y.id, model_class: parameter, relational_model_class: v, macro: r.last) %>
               <% end %>
           <% end %>
         </td>
+
       </tr>
   <% end %>
 </table>
