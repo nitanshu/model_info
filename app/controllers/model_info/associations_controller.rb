@@ -9,10 +9,11 @@ module ModelInfo
     end
 
     def index
-     @model_class,@model_object_id,@relational_model,@relational_model_class,@macro=params['model_class'].constantize,params['model_object_id'],params['relational_model'], params['relational_model_class'].constantize, params['macro']
-     @models_data=@model_class.find(@model_object_id)
-     @relational_data=@models_data.send(@relational_model)
-     @relational_model_pagination=@relational_model_class.page(params[:page]).per(10)
+      @model_class,@model_object_id,@relational_model,@relational_model_class,@macro=params['model_class'].constantize,params['model_object_id'],params['relational_model'], params['relational_model_class'].constantize, params['macro']
+      @models_data=@model_class.find(@model_object_id)
+      @relational_data=@models_data.send(@relational_model)
+      logger.info "#{@relational_data.inspect}=========="
+      @macro == "has_one" || @macro == "belongs_to" ? @relational_model_pagination = 1 : @relational_model_pagination=@relational_data.page(params[:page]).per(10)
     end
 
     def create
