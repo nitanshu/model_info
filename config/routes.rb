@@ -1,7 +1,7 @@
 ModelInfo::Engine.routes.draw do
   get 'associations/index'
 
-  get 'associations/create'
+  post 'associations/create'
 
   get 'associations/show'
 
