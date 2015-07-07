@@ -3,7 +3,7 @@
 <h3>Update Your Model's Data</h3>
 <div class="jumbotron">
   <%= form_for @data, url: fetch_model_infos_update_path(:model_class => @resource), method: :patch do |f| %>
-      <% (@resource.column_names - %w(created_at updated_at)).each do |resource_field| %>
+      <% (@resource.column_names - %w(id created_at updated_at)).each do |resource_field| %>
           <div class="form-group">
             <%= f.label resource_field %>
             <div class="form-group">

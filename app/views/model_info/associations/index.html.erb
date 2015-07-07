@@ -34,7 +34,7 @@
             <td>
               <%= link_to 'view', associations_show_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y, page: page), class: 'btn btn-info' %>
               <%= link_to 'edit', associations_edit_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y, page: page), class: 'btn btn-warning' %>
-              <%= link_to 'delete', associations_destroy_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y), data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+              <%= link_to 'delete', associations_destroy_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y.id), data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
             </td>
           </tr>
       <% end %>

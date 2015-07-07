@@ -55,7 +55,7 @@ module ModelInfo
       @model_class,@model_object_id,@relational_model,@relational_model_class,@data=params['model_class'].constantize,params['model_object_id'],params['relational_model'],params['relational_model_class'].constantize,params['data']
       @models_data=@model_class.find(@model_object_id)
       @relational_data=@models_data.send(@relational_model)
-      @single_relational_data=@relational_model_class.find(@model_object_id)
+      @single_relational_data=@relational_model_class.find(@data)
       @single_relational_data.destroy
       redirect_to :back
     end
