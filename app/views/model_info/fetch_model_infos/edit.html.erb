@@ -1,9 +1,8 @@
 <%= render :partial => 'layouts/model_info/header' %>
-<% @data=@resource.find(@data) %>
 <h3>Update Your Model's Data</h3>
 <div class="jumbotron">
-  <%= form_for @data, url: fetch_model_infos_update_path(:model_class => @resource), method: :patch do |f| %>
-      <% (@resource.column_names - %w(id serialized_options created_at updated_at)).each do |resource_field| %>
+  <%= form_for @models_data, url: fetch_model_infos_update_path(:model_class => @resource, model_object_id: @models_data.id ), method: :patch do |f| %>
+      <% (@resource.column_names - %w(serialized_options created_at updated_at)).each do |resource_field| %>
           <div class="form-group">
             <%= f.label resource_field %>
             <div class="form-group">

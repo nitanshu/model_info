@@ -31,6 +31,7 @@ module ModelInfo
     def edit
       @resource=params['resource'].constantize
       @data=params['data']
+      @models_data=@resource.find(@data)
     end
 
     def show
