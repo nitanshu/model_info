@@ -1,66 +1,61 @@
 require_dependency "model_info/application_controller"
+
 module ModelInfo
   class ModelsController < ApplicationController
     before_action :models_tab
+    before_action :fetch_model_name, only: [:create, :update]
 
     def index
-      redirect_to model_display_url(model_name: @model_array.first)
+      redirect_to model_display_url(model_class: @model_array.first)
     end
 
     def display
-      @model_name=params['model_name']
-      @page= params['page']
-      @model_pagination = @model_name.constantize.page(@page).per(10)
+      @model_class, @page = params[:model_class],params[:page]
+      @model_pagination = @model_class.constantize.page(@page).per(10)
     end
 
     def new
-      @model_class= params['model_new_data'].constantize
-      @model_new_data = @model_class.new
+      @model_class = params[:model_class].constantize
+      @model_data = @model_class.new
     end
 
     def create
-      params.each do |k, v|
-        @model_string= k.to_s if params[k].is_a?(Hash)
-      end
-      @model_class=params['model_class'].constantize
+      @model_class=params[:model_class].constantize
       @model_class.create(permit_params)
-      @model_object_id=@model_class.last.id
-      redirect_to model_show_path(resource: @model_class, data: @model_object_id)
+      redirect_to model_show_path(model_class: @model_class, model_object_id: @model_class.last.id)
     end
 
     def edit
-      @resource=params['resource'].constantize
-      @data=params['data']
-      @models_data=@resource.find(@data)
+      @model_class=params[:model_class].constantize
+      @model_data=@model_class.find(params[:model_object_id])
     end
 
     def show
-      @resource=params['resource'].constantize
-      @data=params['data']
-      @model_data_resource=@resource.find(@data)
+      @model_class=params[:model_class].constantize
+      @model_data=@model_class.find(params[:model_object_id])
     end
 
     def update
-      params.each do |k, v|
-        @model_string= k.to_s if params[k].is_a?(Hash)
-      end
-      @model_class=params['model_class'].constantize
-      @model_object_id=params[@model_string]['id']
-      @model_object=@model_class.find(@model_object_id)
-      @model_object.update(permit_params)
-      redirect_to model_show_path(resource: @model_class, data: @model_object_id)
+      params[:model_class].constantize.find(params[@model_name][:id]).update(permit_params)
+      redirect_to model_show_path(model_class: params[:model_class].constantize, model_object_id: params[@model_name][:id])
     end
 
     def destroy
-      @resource=params['resource'].constantize
-      @resource=@resource.find(params['data'])
-      @resource.destroy
+      params[:model_class].constantize.find(params[:model_object_id]).destroy
       redirect_to :back
     end
 
     private
-    def permit_params
-      params.require(@model_string).permit!
+
+    def fetch_model_name
+      params.each do |k, v|
+        @model_name = k.to_s if params[k].is_a?(Hash)
+      end
     end
+
+    def permit_params
+      params.require(@model_name).permit!
+    end
+
   end
 end

@@ -1,46 +1,44 @@
-<h3><%= parameter =@model_name %></h3>
-<% page= 1 %>
+<h3><%= @model_class %></h3>
 <table class="table table-hover">
   <tr>
-    <% parameter.constantize.column_names.each do |k| %>
+    <% @model_class.constantize.column_names.each do |k| %>
         <th><%= k %></th>
     <% end %>
     <th>Actions</th>
     <th>Association Relationship</th>
   </tr>
-  <% @model_pagination.each do |y| %>
+  <% @model_pagination.each do |model_data| %>
       <tr>
-        <% parameter.constantize.column_names.each do |k| %>
+        <% @model_class.constantize.column_names.each do |model_column_name| %>
             <td>
-              <%= y.send(k.to_sym).class=='String' ? y.send(k.to_sym).truncate(14) : y.send(k.to_sym).to_s.truncate(14)%>
+              <%= model_data.send(model_column_name.to_sym).class=='String' ? model_data.send(model_column_name.to_sym).truncate(14) : model_data.send(model_column_name.to_sym).to_s.truncate(14)%>
             </td>
         <% end %>
         <td>
-          <%= link_to 'view', model_show_path(resource: parameter, data: y, page: page), class: 'btn btn-info' %>
-          <%= link_to 'edit', model_edit_path(resource: parameter, data: y), class: 'btn btn-warning' %>
-          <%= link_to 'delete', model_destroy_path(resource: parameter, data: y), method: :delete,data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+          <%= link_to 'view', model_show_path(model_class: @model_class, model_object_id: model_data.id, page: @page), class: 'btn btn-info' %>
+          <%= link_to 'edit', model_edit_path(model_class: @model_class, model_object_id: model_data.id), class: 'btn btn-warning' %>
+          <%= link_to 'delete', model_destroy_path(model_class: @model_class, model_object_id: model_data.id), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
         </td>
         <td>
           <% relationship_hash ={}, a1=[], a2=[]%>
-          <% parameter.constantize.reflect_on_all_associations.each do |d|%>
-              <%  d.options[:polymorphic] ? a1.push(d.active_record.name) : a2.push(d.klass.name) %>
+          <% @model_class.constantize.reflect_on_all_associations.each do |reflection|%>
+              <%  reflection.options[:polymorphic] ? a1.push(reflection.active_record.name) : a2.push(reflection.klass.name) %>
           <% end %>
-          <% relationship_hash = parameter.constantize.reflect_on_all_associations.map{|x| [x.name, x.macro]}.zip(a1+a2).to_h %>
+          <% relationship_hash = @model_class.constantize.reflect_on_all_associations.map{|x| [x.name, x.macro]}.zip(a1+a2).to_h %>
 
           <% if relationship_hash.empty? %>
               <%= 'Sorry no relationship!'%>
           <% else %>
-              <% relationship_hash.each do |r,v| %>
-                  <%= link_to "#{r.last} #{r.first} |" , associations_index_path(relational_model: r.first, model_object_id: y.id, model_class: parameter, relational_model_class: v, macro: r.last) %>
+              <% relationship_hash.each do |k,v| %>
+                  <%= link_to "#{k.last} #{k.first} |" , associations_index_path(relational_model: k.first, model_object_id: model_data.id, model_class: @model_class, relational_model_class: v, macro: k.last) %>
               <% end %>
           <% end %>
         </td>
-
       </tr>
   <% end %>
 </table>
 <div align="right">
-  <b><%= link_to 'Add new Record', model_new_path(:model_new_data => parameter), class: 'btn btn-success' %></b>
+  <b><%= link_to 'Add new Record', model_new_path(:model_class => @model_class), class: 'btn btn-success' %></b>
 </div>
 <nav>
   <ul class="pagination">

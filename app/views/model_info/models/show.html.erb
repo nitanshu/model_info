@@ -5,10 +5,10 @@
     <th>Attribute</th>
     <th>Value</th>
   </tr>
-  <% @resource.column_names.each do |k| %>
+  <% @model_class.column_names.each do |k| %>
       <tr>
         <th><%= k %></th>
-        <td><%= @model_data_resource.send(k) %></td>
+        <td><%= @model_data.send(k) %></td>
       </tr>
   <% end %>
   <tr>

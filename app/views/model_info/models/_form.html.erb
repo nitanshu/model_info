@@ -1,6 +1,6 @@
 <div class="jumbotron">
-  <%= form_for @model_new_data, url: model_create_path, method: :post do |f| %>
-      <% (@model_new_data.class.column_names - %w(id serialized_options created_at updated_at)).each do |resource_field| %>
+  <%= form_for @model_data, url: model_create_path, method: :post do |f| %>
+      <% (@model_data.class.column_names - %w(id serialized_options created_at updated_at)).each do |resource_field| %>
           <div class="form-group">
             <%= f.label resource_field %>
             <%= hidden_field_tag :model_class, @model_class %>
