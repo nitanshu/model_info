@@ -1,5 +1,7 @@
-<ul class="nav nav-tabs">
-  <% for model_name in @model_array %>
-      <li><%= link_to model_name, fetch_model_infos_display_path(:model_name => model_name) %></li>
-  <% end %>
-</ul>
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href='#'>ModelInfo</a>
+    </div>
+  </div>
+</nav>

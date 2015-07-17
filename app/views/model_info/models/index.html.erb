@@ -1,3 +1,4 @@
+<%= render :partial => 'layouts/model_info/header' %>
 <h3><%= parameter = params[:model_name] %></h3>
 <% page= params[:page] %>
 <table class="table table-hover">
@@ -16,9 +17,9 @@
             </td>
         <% end %>
         <td>
-          <%= link_to 'view', fetch_model_infos_show_path(resource: parameter, data: y, page: page), class: 'btn btn-info' %>
-          <%= link_to 'edit', fetch_model_infos_edit_path(resource: parameter, data: y), class: 'btn btn-warning' %>
-          <%= link_to 'delete', fetch_model_infos_destroy_path(resource: parameter, data: y), data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+          <%= link_to 'view', model_path(resource: parameter, data: y, page: page), class: 'btn btn-info' %>
+          <%= link_to 'edit', edit_model_path(resource: parameter, data: y), class: 'btn btn-warning' %>
+          <%= link_to 'delete', model_path(resource: parameter, data: y), method: :delete,data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
         </td>
         <td>
           <% relationship_hash ={}, a1=[], a2=[]%>
@@ -31,7 +32,7 @@
               <%= 'Sorry no relationship!'%>
           <% else %>
               <% relationship_hash.each do |r,v| %>
-                  <%= link_to "#{r.last} #{r.first} |" , associations_index_path(relational_model: r.first, model_object_id: y.id, model_class: parameter, relational_model_class: v, macro: r.last) %>
+                  <%= link_to "#{r.last} #{r.first} |" , associations_path(relational_model: r.first, model_object_id: y.id, model_class: parameter, relational_model_class: v, macro: r.last) %>
               <% end %>
           <% end %>
         </td>
@@ -40,7 +41,7 @@
   <% end %>
 </table>
 <div align="right">
-  <b><%= link_to 'Add new Record', fetch_model_infos_new_path(:model_new_data => parameter), class: 'btn btn-success' %></b>
+  <b><%= link_to 'Add new Record', new_model_path(:model_new_data => parameter), class: 'btn btn-success' %></b>
 </div>
 <nav>
   <ul class="pagination">

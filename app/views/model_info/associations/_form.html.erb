@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <%= form_for @relational_data, url: associations_create_path, method: :post do |f| %>
+  <%= form_for @relational_data, url: association_path, method: :post do |f| %>
       <% (@relational_data.class.column_names - %w(id created_at updated_at serialized_options)).each do |resource_field| %>
           <div class="form-group">
             <%= f.label resource_field %>

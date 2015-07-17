@@ -1,0 +1,5 @@
+<ul class="nav nav-tabs">
+  <% for model_name in @model_array %>
+      <li><%= link_to model_name, models_path(:model_name => model_name) %></li>
+  <% end %>
+</ul>

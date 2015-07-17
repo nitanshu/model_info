@@ -1,4 +1,3 @@
-<%= render :partial => 'layouts/model_info/header' %>
 <h3>Associated Data of <%= @model_class%> to <%= @relational_model%></h3>
 <% page= params[:page] %>
 <table class="table table-hover">
@@ -17,9 +16,9 @@
                 </td>
             <%end%>
             <td>
-              <%= link_to 'view', associations_show_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, page: page, data: @relational_data.id), class: 'btn btn-info' %>
-              <%= link_to 'edit', associations_edit_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class,  page: page, data: @relational_data.id), class: 'btn btn-warning' %>
-              <%= link_to 'delete', associations_destroy_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class,data: @relational_data.id), data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+              <%= link_to 'view', association_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, page: page, data: @relational_data.id), class: 'btn btn-info' %>
+              <%= link_to 'edit', edit_association_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class,  page: page, data: @relational_data.id), class: 'btn btn-warning' %>
+              <%= link_to 'delete', association_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class,data: @relational_data.id), method: :delete , data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
             </td>
           </tr>
       <%end%>
@@ -32,15 +31,15 @@
                 </td>
             <% end %>
             <td>
-              <%= link_to 'view', associations_show_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y, page: page), class: 'btn btn-info' %>
-              <%= link_to 'edit', associations_edit_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y, page: page), class: 'btn btn-warning' %>
-              <%= link_to 'delete', associations_destroy_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y.id), data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+              <%= link_to 'view', association_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y, page: page), class: 'btn btn-info' %>
+              <%= link_to 'edit', edit_association_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y, page: page), class: 'btn btn-warning' %>
+              <%= link_to 'delete', association_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y.id), data: {confirm: "Are you sure?"},  method: :delete ,class: 'btn btn-danger' %>
             </td>
           </tr>
       <% end %>
       </table>
       <div align="right">
-        <b><%= link_to 'Create associative record', associations_new_path(relational_model: @relational_model,model_object_id: @model_object_id,model_class: @model_class,relational_model_class: @relational_model_class), class: 'btn btn-success'%></b>
+        <b><%= link_to 'Create associative record', new_association_path(relational_model: @relational_model,model_object_id: @model_object_id,model_class: @model_class,relational_model_class: @relational_model_class), class: 'btn btn-success'%></b>
       </div>
       <nav>
         <ul class="pagination">

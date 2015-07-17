@@ -1,7 +1,6 @@
-<%= render :partial => 'layouts/model_info/header' %>
 <h3>Update Your Model's Data</h3>
 <div class="jumbotron">
-  <%= form_for @single_relational_data, url: associations_update_path(:model_class => @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: @data), method: :patch do |f| %>
+  <%= form_for @single_relational_data, url: association_path(:model_class => @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: @data), method: :patch do |f| %>
       <% (@single_relational_data.attribute_names - %w(id serialized_options created_at updated_at)).each do |resource_field| %>
           <div class="form-group">
             <%= f.label resource_field %>
