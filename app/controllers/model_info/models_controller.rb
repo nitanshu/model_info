@@ -4,8 +4,13 @@ module ModelInfo
     before_action :models_tab
 
     def index
-      @model,@page=params['model_name'],params['page']
-      @model_pagination = @model.constantize.page(@page).per(10)
+      redirect_to model_display_url(model_name: @model_array.first)
+    end
+
+    def display
+      @model_name=params['model_name']
+      @page= params['page']
+      @model_pagination = @model_name.constantize.page(@page).per(10)
     end
 
     def new
@@ -20,7 +25,7 @@ module ModelInfo
       @model_class=params['model_class'].constantize
       @model_class.create(permit_params)
       @model_object_id=@model_class.last.id
-      redirect_to model_path(resource: @model_class, data: @model_object_id)
+      redirect_to model_show_path(resource: @model_class, data: @model_object_id)
     end
 
     def edit
@@ -43,7 +48,7 @@ module ModelInfo
       @model_object_id=params[@model_string]['id']
       @model_object=@model_class.find(@model_object_id)
       @model_object.update(permit_params)
-      redirect_to model_path(resource: @model_class, data: @model_object_id)
+      redirect_to model_show_path(resource: @model_class, data: @model_object_id)
     end
 
     def destroy

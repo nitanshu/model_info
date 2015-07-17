@@ -24,7 +24,7 @@ module ModelInfo
       @model_object_id,@model_class,@relational_model, @relational_model_class=params[:model_object_id],params[:model_class].constantize,params['relational_model'], params['relational_model_class'].constantize
       @models_data=@model_class.find(@model_object_id)
       @relational_data=@models_data.send(@relational_model).create(permit_params)
-      redirect_to association_path(model_class: @model_class, model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: @relational_data.id)
+      redirect_to association_show_path(model_class: @model_class, model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: @relational_data.id)
     end
 
     def show
@@ -48,7 +48,7 @@ module ModelInfo
       @single_relational_data=@relational_model_class.find(@data)
       @model_string=@relational_model.singularize
       @single_relational_data.update(permit_params)
-      redirect_to association_path(:model_class => @model_class,model_object_id: @model_object_id,relational_model: @relational_model, relational_model_class: @relational_model_class,data: @data)
+      redirect_to association_show_path(:model_class => @model_class,model_object_id: @model_object_id,relational_model: @relational_model, relational_model_class: @relational_model_class,data: @data)
     end
 
     def destroy
