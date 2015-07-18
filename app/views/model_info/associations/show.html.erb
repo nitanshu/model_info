@@ -5,10 +5,10 @@
     <th>Attribute</th>
     <th>Value</th>
   </tr>
-  <% @relational_model_class.column_names.each do |k| %>
+  <% @associated_model_class.column_names.each do |k| %>
       <tr>
         <th><%= k %></th>
-        <td><%= @single_relational_data.send(k) %></td>
+        <td><%= @single_associated_data.send(k) %></td>
       </tr>
   <% end %>
   <tr>

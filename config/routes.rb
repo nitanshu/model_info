@@ -15,5 +15,5 @@ ModelInfo::Engine.routes.draw do
   get 'association_show',to: 'associations#show'
   get 'association_edit',to: 'associations#edit'
   patch 'association_update',to: 'associations#update'
-  get 'association_destroy',to: 'associations#destroy'
+  delete 'association_destroy',to: 'associations#destroy'
 end

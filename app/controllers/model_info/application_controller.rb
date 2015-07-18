@@ -1,5 +1,6 @@
 module ModelInfo
   class ApplicationController < ActionController::Base
+
     private
     def models_tab
       array=[], @model_array=[]

@@ -1,50 +1,50 @@
-<h3>Associated Data of <%= @model_class%> to <%= @relational_model%></h3>
+<h3>Associated Data of <%= @model_class %> to <%= @associated_model %></h3>
 <% page= params[:page] %>
 <table class="table table-hover">
   <tr>
-    <% @relational_model_class.column_names.each do |k| %>
+    <% @associated_model_class.column_names.each do |k| %>
         <th><%= k %></th>
     <% end %>
     <th>Actions</th>
   </tr>
   <%if @macro == "has_one" || @macro== "belongs_to" %>
-      <%if !@relational_data.nil? %>
+      <%if !@associated_data.nil? %>
           <tr>
-            <% @relational_model_class.column_names.each do |d|%>
+            <% @associated_model_class.column_names.each do |d|%>
                 <td>
-                  <%= @relational_data.send(d).class=='String' ? @relational_data.send(d).truncate(14): @relational_data.send(d).to_s.truncate(14) %>
+                  <%= @associated_data.send(d).class=='String' ? @associated_data.send(d).truncate(14): @associated_data.send(d).to_s.truncate(14) %>
                 </td>
             <%end%>
             <td>
-              <%= link_to 'view', association_show_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, page: page, data: @relational_data.id), class: 'btn btn-info' %>
-              <%= link_to 'edit', association_edit_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class,  page: page, data: @relational_data.id), class: 'btn btn-warning' %>
-              <%= link_to 'delete', association_destroy_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class,data: @relational_data.id), method: :delete , data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+              <%= link_to 'view', association_show_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class, page: page, data: @associated_data.id), class: 'btn btn-info' %>
+              <%= link_to 'edit', association_edit_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class,  page: page, data: @associated_data.id), class: 'btn btn-warning' %>
+              <%= link_to 'delete', association_destroy_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class,data: @associated_data.id), method: :delete , data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
             </td>
           </tr>
       <%end%>
   <% else %>
-      <% @relational_model_pagination.each do |y| %>
+      <% @associated_model_pagination.each do |y| %>
           <tr>
-            <% @relational_model_class.column_names.each do |k| %>
+            <% @associated_model_class.column_names.each do |k| %>
                 <td>
                   <%= y.send(k.to_sym).class=='String' ?y.send(k.to_sym).truncate(14):y.send(k.to_sym).to_s.truncate(14) %>
                 </td>
             <% end %>
             <td>
-              <%= link_to 'view', association_show_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y, page: page), class: 'btn btn-info' %>
-              <%= link_to 'edit', association_edit_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y, page: page), class: 'btn btn-warning' %>
-              <%= link_to 'delete', association_destroy_path(model_class: @model_class,model_object_id: @model_object_id,relational_model: @relational_model,relational_model_class: @relational_model_class, data: y.id), data: {confirm: "Are you sure?"},  method: :delete ,class: 'btn btn-danger' %>
+              <%= link_to 'view', association_show_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class, data: y, page: page), class: 'btn btn-info' %>
+              <%= link_to 'edit', association_edit_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class, data: y, page: page), class: 'btn btn-warning' %>
+              <%= link_to 'delete', association_destroy_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class, data: y.id), data: {confirm: "Are you sure?"},  method: :delete ,class: 'btn btn-danger' %>
             </td>
           </tr>
       <% end %>
       </table>
       <div align="right">
-        <b><%= link_to 'Create associative record', association_new_path(relational_model: @relational_model,model_object_id: @model_object_id,model_class: @model_class,relational_model_class: @relational_model_class), class: 'btn btn-success'%></b>
+        <b><%= link_to 'Create associative record', association_new_path(associated_model: @associated_model,model_object_id: @model_object_id,model_class: @model_class,associated_model_class: @associated_model_class), class: 'btn btn-success'%></b>
       </div>
       <nav>
         <ul class="pagination">
-          <li><%= paginate @relational_model_pagination %></li>
-          <%= page_entries_info @relational_model_pagination %>
+          <li><%= paginate @associated_model_pagination %></li>
+          <%= page_entries_info @associated_model_pagination %>
         </ul>
       </nav>
 
