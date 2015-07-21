@@ -13,5 +13,11 @@ module ModelInfo
         @model_array.delete('ActiveRecord::SchemaMigration')
       end
     end
+
+    def fetch_model_name
+      params.each do |k, v|
+        @model_name = k.to_s if params[k].is_a?(Hash)
+      end
+    end
   end
 end

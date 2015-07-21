@@ -47,15 +47,8 @@ module ModelInfo
 
     private
 
-    def fetch_model_name
-      params.each do |k, v|
-        @model_name = k.to_s if params[k].is_a?(Hash)
-      end
-    end
-
     def permit_params
       params.require(@model_name).permit!
     end
-
   end
 end

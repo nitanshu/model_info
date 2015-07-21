@@ -16,7 +16,7 @@
                 </td>
             <%end%>
             <td>
-              <%= link_to 'view', association_show_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class, page: page, data: @associated_data.id), class: 'btn btn-info' %>
+              <%= link_to 'view', association_show_path(associated_model_class: @associated_model_class, page: page, data: @associated_data.id), class: 'btn btn-info' %>
               <%= link_to 'edit', association_edit_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class,  page: page, data: @associated_data.id), class: 'btn btn-warning' %>
               <%= link_to 'delete', association_destroy_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class,data: @associated_data.id), method: :delete , data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
             </td>
@@ -31,15 +31,15 @@
                 </td>
             <% end %>
             <td>
-              <%= link_to 'view', association_show_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class, data: y, page: page), class: 'btn btn-info' %>
+              <%= link_to 'view', association_show_path(associated_model_class: @associated_model_class, data: y, page: page), class: 'btn btn-info' %>
               <%= link_to 'edit', association_edit_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class, data: y, page: page), class: 'btn btn-warning' %>
-              <%= link_to 'delete', association_destroy_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class, data: y.id), data: {confirm: "Are you sure?"},  method: :delete ,class: 'btn btn-danger' %>
+              <%= link_to 'delete', association_destroy_path(associated_model_class: @associated_model_class, data: y.id), data: {confirm: "Are you sure?"},  method: :delete ,class: 'btn btn-danger' %>
             </td>
           </tr>
       <% end %>
       </table>
       <div align="right">
-        <b><%= link_to 'Create associative record', association_new_path(associated_model: @associated_model,model_object_id: @model_object_id,model_class: @model_class,associated_model_class: @associated_model_class), class: 'btn btn-success'%></b>
+        <b><%= link_to 'Create associative record', association_new_path(model_class: @model_class, model_object_id: @model_object_id, associated_model: @associated_model,model_object_id: @model_object_id,model_class: @model_class,associated_model_class: @associated_model_class), class: 'btn btn-success'%></b>
       </div>
       <nav>
         <ul class="pagination">

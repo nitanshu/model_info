@@ -1,5 +1,18 @@
 <h3>Add New Record</h3>
-<%= render 'form' %>
+<div class="jumbotron">
+  <%= form_for @model_data, url: model_create_path, method: :post do |f| %>
+      <% (@model_data.class.column_names - %w(id serialized_options created_at updated_at)).each do |data_field| %>
+          <div class="form-group">
+            <%= f.label data_field %>
+            <%= hidden_field_tag :model_class, @model_class %>
+            <div class="form-group">
+              <%= f.text_field data_field %>
+            </div>
+          </div>
+      <% end %>
+      <%= f.submit 'Save Changes', class:"btn btn-primary" %>
+<% end %>
+</div>
 
 
 
