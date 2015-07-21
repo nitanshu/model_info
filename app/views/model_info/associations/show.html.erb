@@ -1,20 +1,19 @@
-<% page=params['page']%>
 <h3>View Your Associated Data</h3>
 <table class="table table-hover table-bordered">
   <tr>
     <th>Attribute</th>
     <th>Value</th>
   </tr>
-  <% @associated_model_class.column_names.each do |k| %>
+  <% @associated_model_class.column_names.each do |associated_model_column| %>
       <tr>
-        <th><%= k %></th>
-        <td><%= @single_associated_data.send(k) %></td>
+        <th><%= associated_model_column %></th>
+        <td><%= @single_associated_data.send(associated_model_column) %></td>
       </tr>
   <% end %>
   <tr>
     <th>Actions</th>
     <td>
-      <%= link_to 'back', :back %>
+      <%= link_to 'Back', :back %>
     </td>
   </tr>
 </table>

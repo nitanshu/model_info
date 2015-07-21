@@ -3,10 +3,7 @@
       <% (@associated_data.class.column_names - %w(id created_at updated_at serialized_options)).each do |associated_model_column| %>
           <div class="form-group">
             <%= f.label associated_model_column %>
-            <%= hidden_field_tag :associated_model, @associated_model%>
             <%= hidden_field_tag :associated_model_class, @associated_model_class%>
-            <%= hidden_field_tag :model_class, @model_class%>
-            <%= hidden_field_tag :model_object_id, @model_object_id%>
             <div class="form-group">
               <%= f.text_field associated_model_column %>
             </div>

@@ -24,14 +24,12 @@ module ModelInfo
       @model_object_id,@model_class,@associated_model, @associated_model_class=params[:model_object_id],params[:model_class].constantize,params['associated_model'], params['associated_model_class'].constantize
       @models_data=@model_class.find(@model_object_id)
       @associated_data=@models_data.send(@associated_model).create(permit_params)
-      redirect_to association_show_path(model_class: @model_class, model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class, data: @associated_data.id)
+      redirect_to association_show_path(associated_model_class: @associated_model_class, data: @associated_data.id)
     end
 
     def show
-      @model_class,@model_object_id,@associated_model,@data,@associated_model_class,@page=params['model_class'].constantize,params['model_object_id'],params['associated_model'],params['data'],params['associated_model_class'].constantize,params[:page]
-      @models_data=@model_class.find(@model_object_id)
-      @associated_data=@models_data.send(@associated_model)
-      @single_associated_data=@associated_model_class.find(@data)
+      @associated_model_class=params[:associated_model_class].constantize
+      @single_associated_data=@associated_model_class.find(params[:data])
     end
 
     def edit
