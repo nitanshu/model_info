@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
 
-  s.add_runtime_dependency 'bootstrap', '0.0.1'
-  s.add_runtime_dependency 'kaminari', '0.16.3'
+  s.add_dependency 'bootstrap', '0.0.1'
+  s.add_dependency 'kaminari', '0.16.3'
   s.add_development_dependency "sqlite3"
 end

@@ -6,11 +6,7 @@ ModelInfo gem provides all *models*(available in your application including engi
 
 Add this line to your application's Gemfile:
 
-<tt>gem 'model_info' , :github => 'nitanshu/model_info'</tt>
-
-Please install *kaminari* gem:
-
-<tt>gem 'kaminari'</tt>
+<tt>gem 'model_info' </tt>
 
 And then execute:
 
