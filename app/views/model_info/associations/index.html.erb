@@ -1,5 +1,4 @@
 <h3>Associated Data of <%= @model_class %> to <%= @associated_model %></h3>
-<% page= params[:page] %>
 <table class="table table-hover">
   <tr>
     <% @associated_model_class.column_names.each do |k| %>
@@ -16,8 +15,8 @@
                 </td>
             <%end%>
             <td>
-              <%= link_to 'view', association_show_path(associated_model_class: @associated_model_class, page: page, data: @associated_data.id), class: 'btn btn-info' %>
-              <%= link_to 'edit', association_edit_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class,  page: page, data: @associated_data.id), class: 'btn btn-warning' %>
+              <%= link_to 'view', association_show_path(associated_model_class: @associated_model_class, page: @page, data: @associated_data.id), class: 'btn btn-info' %>
+              <%= link_to 'edit', association_edit_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class,  page: @page, data: @associated_data.id), class: 'btn btn-warning' %>
               <%= link_to 'delete', association_destroy_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class,data: @associated_data.id), method: :delete , data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
             </td>
           </tr>
@@ -31,8 +30,8 @@
                 </td>
             <% end %>
             <td>
-              <%= link_to 'view', association_show_path(associated_model_class: @associated_model_class, data: y, page: page), class: 'btn btn-info' %>
-              <%= link_to 'edit', association_edit_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class, data: y, page: page), class: 'btn btn-warning' %>
+              <%= link_to 'view', association_show_path(associated_model_class: @associated_model_class, data: y, page: @page), class: 'btn btn-info' %>
+              <%= link_to 'edit', association_edit_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class, data: y, page: @page), class: 'btn btn-warning' %>
               <%= link_to 'delete', association_destroy_path(associated_model_class: @associated_model_class, data: y.id), data: {confirm: "Are you sure?"},  method: :delete ,class: 'btn btn-danger' %>
             </td>
           </tr>
