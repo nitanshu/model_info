@@ -8,6 +8,10 @@ Add this line to your application's Gemfile:
 
 <tt>gem 'model_info' , :github => 'nitanshu/model_info'</tt>
 
+Please install *kaminari* gem:
+
+<tt>gem 'kaminari'</tt>
+
 And then execute:
 
 <tt>$ bundle</tt>
