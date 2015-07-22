@@ -14,12 +14,7 @@ Gem::Specification.new do |s|
   s.description = "Description of ModelInfo."
   s.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc", "Gemfile"]
- # s.test_files = Dir["test/**/*"]
+  s.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc", "Gemfile"]
 
-  s.add_dependency "rails"
-  s.add_dependency 'bootstrap'
-  s.add_dependency 'kaminari'
-  s.add_dependency 'jquery-rails'
-  s.add_development_dependency "sqlite3"
+  spec.add_dependency 'httparty', '0.13.5'
 end
