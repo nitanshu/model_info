@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    model_info (0.0.1)
+    model_info (0.0.2)
       bootstrap (= 0.0.1)
       kaminari (= 0.16.3)
 

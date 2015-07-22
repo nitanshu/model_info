@@ -8,3 +8,6 @@ test/dummy/tmp/
 test/dummy/.sass-cache
 .idea/
 test/
+model_info-0.0.1.gem
+.ruby-version
+.ruby-gemset

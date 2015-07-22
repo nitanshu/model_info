@@ -7,11 +7,11 @@ require "model_info/version"
 Gem::Specification.new do |s|
   s.name        = "model_info"
   s.version     = ModelInfo::VERSION
-  s.authors     = ["nitanshu"]
+  s.authors     = ["nitanshu verma"]
   s.email       = ["nitanshu1991@gmail.com"]
 
-  s.summary     = "Summary of ModelInfo."
-  s.description = "Description of ModelInfo."
+  s.summary     = "ModelInfo provides the CRUD of all models and their associated models"
+  s.description = "ModelInfo gem build on a thought where you should not write a single line of code and you get every models CRUD easily."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
