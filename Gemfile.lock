@@ -2,9 +2,9 @@ PATH
   remote: .
   specs:
     model_info (0.0.1)
-      bootstrap
+      bootstrap (= 0.0.1)
       jquery-rails
-      kaminari
+      kaminari (= 0.16.3)
 
 GEM
   remote: https://rubygems.org/
