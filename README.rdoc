@@ -1,3 +1,28 @@
 = ModelInfo
 
-This project rocks and uses MIT-LICENSE.
+ModelInfo gem provides all models(available in your application including engine's model) CRUD and all *associations* of a model and their CRUD.
+
+== Installation
+
+Add this line to your application's Gemfile:
+
+<tt>gem install 'model_info' , :github => 'nitanshu/model_info'</tt>
+
+And then execute:
+
+<tt>$ bundle</tt>
+
+== Usage
+
+To use this gem you just need to mount it in your route file *config/routes.rb*
+
+<tt> mount ModelInfo::Engine => '/model_info' </tt>
+
+Then to go to the dashboard hit the url as:
+
+*/model_info/models*
+
+
+
+
+
