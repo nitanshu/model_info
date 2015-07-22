@@ -24,7 +24,7 @@
           <% @model_class.constantize.reflect_on_all_associations.each do |reflection|%>
               <%  reflection.options[:polymorphic] ? a1.push(reflection.active_record.name) : a2.push(reflection.klass.name) %>
           <% end %>
-          <% relationship_hash = @model_class.constantize.reflect_on_all_associations.map{|x| [x.name, x.macro]}.zip(a1+a2).to_h %>
+          <% relationship_hash = @model_class.constantize.reflect_on_all_associations.map{|x| [x.name, x.macro]}.zip(a1+a2).inject({}){|h,e| h[e.first] = e.last; h}%>
 
           <% if relationship_hash.empty? %>
               <%= 'Sorry no relationship!'%>
