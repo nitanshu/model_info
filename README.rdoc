@@ -1,12 +1,12 @@
 = ModelInfo
 
-ModelInfo gem provides all models(available in your application including engine's model) CRUD and all *associations* of a model and their CRUD.
+ModelInfo gem provides all *models*(available in your application including engine's model) CRUD and all *associations* of a model and their CRUD.
 
 == Installation
 
 Add this line to your application's Gemfile:
 
-<tt>gem install 'model_info' , :github => 'nitanshu/model_info'</tt>
+<tt>gem 'model_info' , :github => 'nitanshu/model_info'</tt>
 
 And then execute:
 
@@ -20,9 +20,11 @@ To use this gem you just need to mount it in your route file *config/routes.rb*
 
 Then to go to the dashboard hit the url as:
 
-*/model_info/models*
+your_application_url */model_info/models*
 
+== Working Status
 
+This engine may break so many times but I am working on so many things such as handling all exceptions and the system breaks on polymorphic association.
 
 
 
