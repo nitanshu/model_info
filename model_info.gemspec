@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'bootstrap', '0.0.1'
   s.add_dependency 'kaminari', '0.16.3'
-  s.add_dependency 'jquery-rails' '4.0.4'
+  s.add_dependency 'jquery-rails', '4.0.4'
   s.add_development_dependency "sqlite3"
 end
