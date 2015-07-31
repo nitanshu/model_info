@@ -1,5 +1,5 @@
 module ModelInfo
-  class ApplicationController < ActionController::Base
+  class ApplicationController < ::ApplicationController
 
     private
     def models_tab
