@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+
+.model_action a{
+    margin-bottom: 3px;
+}

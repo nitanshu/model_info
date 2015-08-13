@@ -14,10 +14,10 @@
               <%= model_data.send(model_column_name.to_sym).class=='String' ? model_data.send(model_column_name.to_sym).truncate(14) : model_data.send(model_column_name.to_sym).to_s.truncate(14)%>
             </td>
         <% end %>
-        <td>
-          <%= link_to 'view', model_show_path(model_class: @model_class, model_object_id: model_data.id, page: @page), class: 'btn btn-info' %>
-          <%= link_to 'edit', model_edit_path(model_class: @model_class, model_object_id: model_data.id), class: 'btn btn-warning' %>
-          <%= link_to 'delete', model_destroy_path(model_class: @model_class, model_object_id: model_data.id), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+        <td class="model_action">
+          <%= link_to 'View', model_show_path(model_class: @model_class, model_object_id: model_data.id, page: @page), class: 'btn btn-info' %>
+          <%= link_to 'Edit', model_edit_path(model_class: @model_class, model_object_id: model_data.id), class: 'btn btn-warning' %>
+          <%= link_to 'Delete', model_destroy_path(model_class: @model_class, model_object_id: model_data.id), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
         </td>
         <td>
           <% relationship_hash ={}, a1=[], a2=[]%>

@@ -9,7 +9,7 @@
             <%= hidden_field_tag :model_class, params[:model_class]%>
             <%= hidden_field_tag :model_object_id, params[:model_object_id]%>
             <div class="form-group">
-              <%= f.text_field associated_model_column %>
+              <%= f.text_field associated_model_column, :class => 'form-control'%>
             </div>
           </div>
       <% end %>
