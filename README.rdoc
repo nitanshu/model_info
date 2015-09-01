@@ -33,7 +33,7 @@ Also I am looking forward to provide the download option of each model's and ass
 If your are using *devise* or *active_admin* then you need to be aware of layout and making it redirect to the page you want if there is any url hit without user login
 
  for example:
- 
+
  <tt>
  layout :determine_layout
 
@@ -43,5 +43,5 @@ If your are using *devise* or *active_admin* then you need to be aware of layout
  end
  </tt>
 
-It will collide with my layout so avoid doing this.
+It will collide with my layout so avoid doing this or make your invalid request redirect to the right path.
 

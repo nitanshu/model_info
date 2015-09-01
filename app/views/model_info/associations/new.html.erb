@@ -1,4 +1,4 @@
-<h3>Add New Record in <%= params[:associated_model_class].name %> </h3>
+<h3>Add New Record in <%= params[:associated_model_class] %>  </h3>
 <div class="jumbotron">
   <%= form_for @associated_data, url: association_create_path, method: :post do |f| %>
       <% (@associated_data.class.column_names - %w(id created_at updated_at serialized_options)).each do |associated_model_column| %>
