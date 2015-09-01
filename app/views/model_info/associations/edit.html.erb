@@ -1,4 +1,4 @@
-<h3>Update Your Model's Data</h3>
+<h3>Update Your Associated Data of <%= params[:associated_model_class] %> </h3>
 <div class="jumbotron">
   <%= form_for @single_associated_data, url: association_update_path(associated_model: params[:associated_model],associated_model_class: params[:associated_model_class], data: params[:data]), method: :patch do |f| %>
       <% (@single_associated_data.attribute_names - %w(id serialized_options created_at updated_at)).each do |associated_model_column| %>

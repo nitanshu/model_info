@@ -1,5 +1,4 @@
-<h3>Add New Record</h3>
-
+<h3>Add New Record in <%= @model_class.name %> </h3>
 
 <div class="jumbotron">
   <%= form_for @model_data, url: model_create_path, method: :post , class: 'form' do |f| %>

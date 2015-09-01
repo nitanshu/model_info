@@ -28,5 +28,20 @@ This engine may break so many times but I am working on so many things such as h
 
 Also I am looking forward to provide the download option of each model's and associated model's data of (CSV,XML,PDF,JSON).
 
+== What you need to do avoid layout problem
 
+If your are using *devise* or *active_admin* then you need to be aware of layout and making it redirect to the page you want if there is any url hit without user login
+
+ for example:
+ 
+ <tt>
+ layout :determine_layout
+
+ protected
+ def determine_layout
+   current_user.nil? ? "devise":"application"
+ end
+ </tt>
+
+It will collide with my layout so avoid doing this.
 
