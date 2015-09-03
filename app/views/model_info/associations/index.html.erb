@@ -44,10 +44,12 @@
           </tr>
       <% end %>
       </table>
-      <nav>
-        <ul class="pagination">
-          <li><%= paginate @associated_model_pagination %></li>
-          <%= page_entries_info @associated_model_pagination %>
-        </ul>
-      </nav>
+      <div class="downloads">
+        Download Associated Data: <%= link_to 'CSV', download_csv_path(associated_model: @associated_model, model_class: @model_class, model_object_id: @model_object_id), format: :csv %>
+        <%= link_to 'JSON', download_json_path(associated_model: @associated_model, model_class: @model_class, model_object_id: @model_object_id), format: :json %>
+        <%= link_to 'XML', download_xml_path(associated_model: @associated_model, model_class: @model_class, model_object_id: @model_object_id), format: :xml %>
+      </div>
+      <div class="clearfix"></div>
+      <%= paginate @associated_model_pagination %>
+      <%= page_entries_info @associated_model_pagination %>
   <% end %>
