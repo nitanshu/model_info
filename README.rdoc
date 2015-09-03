@@ -24,11 +24,15 @@ your_application_url */model_info/models*
 
 == Working Status
 
-This engine may break so many times but I am working on so many things such as handling all exceptions and the system breaks on polymorphic association.
+The download option for PDF, EXCEL and DOCX would be provided in an initializer file to make it true or false and also I will provide site logo and title option in an initializer file.
 
-Also I am looking forward to provide the download option of each model's and associated model's data of (CSV,XML,PDF,JSON).
+Flash notification will be implemented with *pnotify* gem.
 
-== What you need to do avoid layout problem
+== Bugs
+
+This engine breaks on polymorphic association.
+
+I am not handling the exceptions so it will break if you will fill bad data or something a model validates upon.
 
 If your are using *devise* or *active_admin* then you need to be aware of layout and making it redirect to the page you want if there is any url hit without user login
 
