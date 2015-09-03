@@ -42,7 +42,10 @@
       </tr>
   <% end %>
 </table>
-Download <%= link_to 'CSV', download_csv_path(model_class: @model_class), format: :csv %>
+Download: <%= link_to 'CSV', download_csv_path(model_class: @model_class), format: :csv %>
+<%= link_to 'JSON', download_json_path(model_class: @model_class), format: :json %>
+<%= link_to 'XML', download_xml_path(model_class: @model_class), format: :xml %>
+
 <nav>
   <ul class="pagination">
     <li><%= paginate @model_pagination %></li>

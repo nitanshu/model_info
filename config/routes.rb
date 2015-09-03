@@ -18,4 +18,6 @@ ModelInfo::Engine.routes.draw do
   delete 'association_destroy',to: 'associations#destroy'
 
   get 'download_csv', to: 'downloads#download_csv'
+  get 'download_json', to: 'downloads#download_json'
+  get 'download_xml', to: 'downloads#download_xml'
 end
