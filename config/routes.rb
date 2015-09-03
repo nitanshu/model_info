@@ -16,4 +16,6 @@ ModelInfo::Engine.routes.draw do
   get 'association_edit',to: 'associations#edit'
   patch 'association_update',to: 'associations#update'
   delete 'association_destroy',to: 'associations#destroy'
+
+  get 'download_csv', to: 'downloads#download_csv'
 end

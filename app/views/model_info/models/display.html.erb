@@ -42,6 +42,7 @@
       </tr>
   <% end %>
 </table>
+Download <%= link_to 'CSV', download_csv_path(model_class: @model_class), format: :csv %>
 <nav>
   <ul class="pagination">
     <li><%= paginate @model_pagination %></li>
