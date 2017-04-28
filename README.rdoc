@@ -1,6 +1,6 @@
 = ModelInfo
 
-ModelInfo gem provides all *models*(available in your application including engine's model) CRUD and all *associations* of a model and their CRUD.
+ModelInfo gem provides all *models*(available in your application including engine's model) CRUD and all *associations* of each model and their CRUD.
 
 == Installation
 
@@ -24,7 +24,7 @@ your_application_url */model_info/models*
 
 == Working Status
 
-The download option for PDF, EXCEL and DOCX would be provided in an initializer file to make it true or false and also I will provide site logo and title option in an initializer file.
+The download option for EXCEL would be provided in an initializer file to make it true or false and also I will provide site logo and title option in an initializer file.
 
 Flash notification will be implemented with *pnotify* gem.
 
