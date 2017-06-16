@@ -1,8 +1,9 @@
 <div class="top_block col-md-12">
   <h3 class="pull-left">Associated Data of <%= @model_class %> to <%= @associated_model %></h3>
+
   <div class="pull-right">
     <% unless @macro == "has_one" || @macro == "belongs_to" %>
-        <b><%= link_to "Create associative record", association_new_path(model_class: @model_class, model_object_id: @model_object_id, associated_model: @associated_model,model_object_id: @model_object_id,model_class: @model_class,associated_model_class: @associated_model_class), class: 'btn btn-success'%></b>
+        <b><%= link_to "Create associative record", association_new_path(model_class: @model_class, model_object_id: @model_object_id, associated_model: @associated_model, model_object_id: @model_object_id, model_class: @model_class, associated_model_class: @associated_model_class), class: 'btn btn-success' %></b>
     <% end %>
   </div>
 </div>
@@ -16,15 +17,15 @@
   <% if @macro == "has_one" || @macro== "belongs_to" %>
       <% unless @associated_data.nil? %>
           <tr>
-            <% @associated_model_class.column_names.each do |d|%>
+            <% @associated_model_class.column_names.each do |d| %>
                 <td>
-                  <%= @associated_data.send(d).class=='String' ? @associated_data.send(d).truncate(14): @associated_data.send(d).to_s.truncate(14) %>
+                  <%= @associated_data.send(d).class=='String' ? @associated_data.send(d).truncate(14) : @associated_data.send(d).to_s.truncate(14) %>
                 </td>
-            <%end%>
+            <% end %>
             <td>
               <%= link_to 'view', association_show_path(associated_model_class: @associated_model_class, page: @page, data: @associated_data.id), class: 'btn btn-info' %>
-              <%= link_to 'edit', association_edit_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class,  page: @page, data: @associated_data.id), class: 'btn btn-warning' %>
-              <%= link_to 'delete', association_destroy_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class,data: @associated_data.id), method: :delete , data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+              <%= link_to 'edit', association_edit_path(model_class: @model_class, model_object_id: @model_object_id, associated_model: @associated_model, associated_model_class: @associated_model_class, page: @page, data: @associated_data.id), class: 'btn btn-warning' %>
+              <%= link_to 'delete', association_destroy_path(model_class: @model_class, model_object_id: @model_object_id, associated_model: @associated_model, associated_model_class: @associated_model_class, data: @associated_data.id), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
             </td>
           </tr>
       <% end %>
@@ -33,19 +34,20 @@
           <tr>
             <% @associated_model_class.column_names.each do |k| %>
                 <td>
-                  <%= y.send(k.to_sym).class=='String' ?y.send(k.to_sym).truncate(14):y.send(k.to_sym).to_s.truncate(14) %>
+                  <%= y.send(k.to_sym).class=='String' ? y.send(k.to_sym).truncate(14) : y.send(k.to_sym).to_s.truncate(14) %>
                 </td>
             <% end %>
             <td>
               <%= link_to 'view', association_show_path(associated_model_class: @associated_model_class, data: y, page: @page), class: 'btn btn-info' %>
-              <%= link_to 'edit', association_edit_path(model_class: @model_class,model_object_id: @model_object_id,associated_model: @associated_model,associated_model_class: @associated_model_class, data: y, page: @page), class: 'btn btn-warning' %>
-              <%= link_to 'delete', association_destroy_path(associated_model_class: @associated_model_class, data: y.id), data: {confirm: "Are you sure?"},  method: :delete ,class: 'btn btn-danger' %>
+              <%= link_to 'edit', association_edit_path(model_class: @model_class, model_object_id: @model_object_id, associated_model: @associated_model, associated_model_class: @associated_model_class, data: y, page: @page), class: 'btn btn-warning' %>
+              <%= link_to 'delete', association_destroy_path(associated_model_class: @associated_model_class, data: y.id), data: {confirm: "Are you sure?"}, method: :delete, class: 'btn btn-danger' %>
             </td>
           </tr>
       <% end %>
       </table>
       <div class="downloads">
-        Download Associated Data: <%= link_to 'CSV', download_csv_path(associated_model: @associated_model, model_class: @model_class, model_object_id: @model_object_id), format: :csv %>
+        Download Associated
+        Data: <%= link_to 'CSV', download_csv_path(associated_model: @associated_model, model_class: @model_class, model_object_id: @model_object_id), format: :csv %>
         <%= link_to 'JSON', download_json_path(associated_model: @associated_model, model_class: @model_class, model_object_id: @model_object_id), format: :json %>
         <%= link_to 'XML', download_xml_path(associated_model: @associated_model, model_class: @model_class, model_object_id: @model_object_id), format: :xml %>
       </div>

@@ -4,16 +4,16 @@
       <% (@associated_data.class.column_names - %w(id created_at updated_at serialized_options)).each do |associated_model_column| %>
           <div class="form-group">
             <%= f.label associated_model_column %>
-            <%= hidden_field_tag :associated_model_class, params[:associated_model_class]%>
-            <%= hidden_field_tag :associated_model, params[:associated_model]%>
-            <%= hidden_field_tag :model_class, params[:model_class]%>
-            <%= hidden_field_tag :model_object_id, params[:model_object_id]%>
+            <%= hidden_field_tag :associated_model_class, params[:associated_model_class] %>
+            <%= hidden_field_tag :associated_model, params[:associated_model] %>
+            <%= hidden_field_tag :model_class, params[:model_class] %>
+            <%= hidden_field_tag :model_object_id, params[:model_object_id] %>
             <div class="form-group">
-              <%= f.text_field associated_model_column, :class => 'form-control'%>
+              <%= f.text_field associated_model_column, :class => 'form-control' %>
             </div>
           </div>
       <% end %>
-      <%= f.submit 'Save Changes', class:"btn btn-primary" %>
+      <%= f.submit 'Save Changes', class: "btn btn-primary" %>
   <% end %>
 </div>
 

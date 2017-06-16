@@ -5,9 +5,9 @@ module ModelInfo
     def models_tab
       array=[], @model_array=[]
       Rails.application.eager_load!
-      array=ActiveRecord::Base.descendants.collect{|x| x.to_s if x.table_exists?}.compact
+      array=ActiveRecord::Base.descendants.collect { |x| x.to_s if x.table_exists? }.compact
       array.each do |x|
-        if  x.split('::').last.split('_').first != "HABTM"
+        if x.split('::').last.split('_').first != "HABTM"
           @model_array.push(x)
         end
         @model_array.delete('ActiveRecord::SchemaMigration')
