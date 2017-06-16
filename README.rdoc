@@ -49,4 +49,4 @@ If your are using *devise* or *active_admin* then you need to be aware of layout
 
 It will collide with my layout so avoid doing this or make your invalid request redirect to the right path.
 
-NOTE: For now this gem properly supports **rails < 5**
+*NOTE*: For now this gem properly supports * rails < 5 *
