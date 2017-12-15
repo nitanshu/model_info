@@ -6,7 +6,8 @@ module ModelInfo
     before_action :fetch_model_name, only: [:create, :update]
 
     def index
-      redirect_to model_display_url(model_class: @model_array.first)
+      @model_class, @page = @model_array.first, 1
+      @model_pagination = @model_class.constantize.page(@page).per(10)
     end
 
     def display

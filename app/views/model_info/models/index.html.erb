@@ -50,7 +50,7 @@ Download: <%= link_to 'CSV', download_csv_path(model_class: @model_class), forma
 <nav>
   <ul class="pagination">
     <li><%= paginate @model_pagination %></li>
-    <%= rel_next_prev_link_tags @model_pagination unless @model_pagination.empty? %>
+    <%= page_entries_info @model_pagination %>
   </ul>
 </nav>
 

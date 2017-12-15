@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
   s.add_dependency 'bootstrap-sass', '~> 3.3.1'
-  s.add_dependency 'kaminari', '~>0.16.3'
+  s.add_dependency 'kaminari', '~>1.1.1'
 end
