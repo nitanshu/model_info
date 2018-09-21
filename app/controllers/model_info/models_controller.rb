@@ -2,7 +2,6 @@ require_dependency "model_info/application_controller"
 
 module ModelInfo
   class ModelsController < ApplicationController
-    before_action :models_tab
     before_action :fetch_model_name, only: [:create, :update]
 
     def index

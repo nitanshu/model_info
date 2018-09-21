@@ -1,5 +1,7 @@
 ModelInfo::Engine.routes.draw do
 
+  root to: 'models#index'
+
   get 'model_display', to: 'models#display'
   get 'models',to: 'models#index'
   get 'model_new',to: 'models#new'

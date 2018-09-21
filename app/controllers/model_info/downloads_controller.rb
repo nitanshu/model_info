@@ -1,7 +1,7 @@
 require_dependency "model_info/application_controller"
 module ModelInfo
   class DownloadsController < ApplicationController
-    before_filter :authenticate_request
+    before_action :authenticate_request
 
     def download_csv
       csv_string = CSV.generate do |csv|

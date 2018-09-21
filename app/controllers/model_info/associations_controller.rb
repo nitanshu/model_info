@@ -2,7 +2,6 @@ require_dependency "model_info/application_controller"
 
 module ModelInfo
   class AssociationsController < ApplicationController
-    before_action :models_tab
     before_action :fetch_model_name, only: [:create, :update]
 
     def new
@@ -14,7 +13,7 @@ module ModelInfo
       @model_class, @model_object_id, @associated_model, @associated_model_class, @macro, @page = params[:model_class].constantize, params[:model_object_id], params[:associated_model], params[:associated_model_class].constantize, params[:macro], params[:page]
       @models_data=@model_class.find(params[:model_object_id])
       @associated_data=@models_data.send(@associated_model)
-      @macro == "has_one" || @macro == "belongs_to" ? @associated_model_pagination = 1 : @associated_model_pagination = @associated_data.page(params[:page]).per(10)
+      @macro == 'has_one' || @macro == 'belongs_to' ? @associated_model_pagination = 1 : @associated_model_pagination = @associated_data.page(params[:page]).per(10)
     end
 
     def create
