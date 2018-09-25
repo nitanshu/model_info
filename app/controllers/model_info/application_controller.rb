@@ -1,5 +1,6 @@
 module ModelInfo
   class ApplicationController < ::ApplicationController
+    before_action :models_tab
 
     private
     def models_tab
