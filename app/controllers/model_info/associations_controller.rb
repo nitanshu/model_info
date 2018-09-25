@@ -2,7 +2,7 @@ require_dependency "model_info/application_controller"
 
 module ModelInfo
   class AssociationsController < ApplicationController
-    before_action :fetch_model_name, only: [:create, :update]
+    before_action :fetch_model_class
 
     def new
       @model_data=params[:model_class].constantize.find(params[:model_object_id])
