@@ -46,7 +46,7 @@ module ModelInfo
 
     def destroy
       params[:model_class].constantize.find(params[:model_object_id]).destroy
-      redirect_to :back
+      redirect_back(fallback_location: request.referrer)
     end
 
     private

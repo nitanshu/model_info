@@ -41,11 +41,11 @@ module ModelInfo
     end
 
     def associations_hash
-      active_record_name=[], klass_name=[]
+      relationship_hash ={}, active_record_name=[], klass_name=[]
       model_reflection_on_associations.each do |reflection|
         reflection.options[:polymorphic] ? active_record_name.push(reflection.active_record.name) : klass_name.push(reflection.klass.name)
       end
-      model_reflection_on_associations.map { |x| [x.name, x.macro] }.zip(active_record_name+klass_name).inject({}) { |h, e| h[e.first] = e.last; h }
+      relationship_hash = model_reflection_on_associations.map { |x| [x.name, x.macro] }.zip(active_record_name+klass_name).inject({}) { |h, e| h[e.first] = e.last; h }
     end
   end
 end
