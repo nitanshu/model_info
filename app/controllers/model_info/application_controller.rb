@@ -20,5 +20,9 @@ module ModelInfo
         @model_name = k.to_s if params[k].is_a?(Hash)
       end
     end
+
+    def fetch_model_class
+      @model_class = params[:model_class].try(:constantize)
+    end
   end
 end

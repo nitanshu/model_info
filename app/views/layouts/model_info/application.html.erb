@@ -15,3 +15,12 @@
 </div>
 </body>
 </html>
+<script type="text/javascript">
+    $(function (e) {
+        $('.models_tab').first().addClass('active');
+        $('.models_tab').on('click', function (j) {
+//            $('.models_tab').removeClass('active');
+            $(this).addClass('active');
+        });
+    })
+</script>
