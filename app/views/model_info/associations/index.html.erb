@@ -1,9 +1,9 @@
 <div class="top_block col-md-12">
-  <h3 class="pull-left">Associated Data of <%= @model_class %> to <%= @associated_model %></h3>
+  <h3 class="pull-left">Associated Data of <%= @model_class %> to <%= @associated_model_class %></h3>
 
   <div class="pull-right">
     <% unless @macro == "has_one" || @macro == "belongs_to" %>
-        <b><%= link_to "Create associative record", association_new_path(model_class: @model_class, model_object_id: @model_object_id, associated_model: @associated_model, model_object_id: @model_object_id, model_class: @model_class, associated_model_class: @associated_model_class), class: 'btn btn-success' %></b>
+        <b><%= link_to "Create associative record", association_new_path(param_set), class: 'btn btn-success' %></b>
     <% end %>
   </div>
 </div>
@@ -15,17 +15,17 @@
     <th>Actions</th>
   </tr>
   <% if @macro == "has_one" || @macro== "belongs_to" %>
-      <% unless @associated_data.nil? %>
+      <% unless @associated_model_data.nil? %>
           <tr>
             <% @associated_model_class.column_names.each do |d| %>
                 <td>
-                  <%= @associated_data.send(d).class=='String' ? @associated_data.send(d).truncate(14) : @associated_data.send(d).to_s.truncate(14) %>
+                  <%= @associated_model_data.send(d).class=='String' ? @associated_model_data.send(d).truncate(14) : @associated_model_data.send(d).to_s.truncate(14) %>
                 </td>
             <% end %>
             <td>
-              <%= link_to 'view', association_show_path(associated_model_class: @associated_model_class, page: @page, data: @associated_data.id), class: 'btn btn-info' %>
-              <%= link_to 'edit', association_edit_path(model_class: @model_class, model_object_id: @model_object_id, associated_model: @associated_model, associated_model_class: @associated_model_class, page: @page, data: @associated_data.id), class: 'btn btn-warning' %>
-              <%= link_to 'delete', association_destroy_path(model_class: @model_class, model_object_id: @model_object_id, associated_model: @associated_model, associated_model_class: @associated_model_class, data: @associated_data.id), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+              <%= link_to 'view', association_show_path(page: @page, associated_model_object_id: @associated_model_data), class: 'btn btn-info' %>
+              <%= link_to 'edit', association_edit_path(associated_model_object_id: @associated_model_data), class: 'btn btn-warning' %>
+              <%= link_to 'delete', association_destroy_path(associated_model_object_id: @associated_model_data), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
             </td>
           </tr>
       <% end %>
@@ -38,9 +38,9 @@
                 </td>
             <% end %>
             <td>
-              <%= link_to 'view', association_show_path(associated_model_class: @associated_model_class, data: y, page: @page), class: 'btn btn-info' %>
-              <%= link_to 'edit', association_edit_path(model_class: @model_class, model_object_id: @model_object_id, associated_model: @associated_model, associated_model_class: @associated_model_class, data: y, page: @page), class: 'btn btn-warning' %>
-              <%= link_to 'delete', association_destroy_path(associated_model_class: @associated_model_class, data: y.id), data: {confirm: "Are you sure?"}, method: :delete, class: 'btn btn-danger' %>
+              <%= link_to 'view', association_show_path(associated_model_object_id: y, page: @page), class: 'btn btn-info' %>
+              <%= link_to 'edit', association_edit_path(associated_model_object_id: y, page: @page), class: 'btn btn-warning' %>
+              <%= link_to 'delete', association_destroy_path(associated_model_object_id: y), data: {confirm: "Are you sure?"}, method: :delete, class: 'btn btn-danger' %>
             </td>
           </tr>
       <% end %>

@@ -27,7 +27,7 @@
               <%= "Sorry no association exist for #{model_name}" %>
           <% else %>
               <% associations_hash.each do |k, v| %>
-                  <%= link_to "#{k.last} #{k.first} |", associations_index_path(associated_model: k.first, model_object_id: model_data.id, model_class: @model_class, associated_model_class: v, macro: k.last) %>
+                  <%= link_to "#{k.last} #{k.first} |", associations_index_path(associated_model_name: k.first, model_object_id: model_data.id, model_class: @model_class, associated_model_class: v, macro: k.last) %>
               <% end %>
           <% end %>
         </td>
