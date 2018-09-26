@@ -2,7 +2,6 @@ require_dependency "model_info/application_controller"
 
 module ModelInfo
   class ModelsController < ApplicationController
-    before_action :fetch_model_name, only: [:create, :update]
     before_action :fetch_model_class
 
     def display
@@ -15,9 +14,9 @@ module ModelInfo
     end
 
     def create
-      @model_class.create(permit_params)
-      if @model_class.last
-        redirect_to(fallback_location: model_show_path(model_class: @model_class, model_object_id: @model_class.last.id))
+      @model_data =  @model_class.new(permit_params)
+      if @model_data.save
+        redirect_to model_show_path(model_class: @model_class, model_object_id: @model_class.last.id)
       else
         redirect_back(fallback_location: request.referrer)
       end
@@ -33,7 +32,7 @@ module ModelInfo
 
     def update
       @model_class.find(params[@model_name][:id]).update(permit_params)
-      redirect_to(fallback_location: model_show_path(model_class: @model_class, model_object_id: params[@model_name][:id]))
+      redirect_to model_show_path(model_class: @model_class, model_object_id: params[@model_name][:id])
     end
 
     def destroy

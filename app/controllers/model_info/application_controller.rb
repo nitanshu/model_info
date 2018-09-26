@@ -23,6 +23,7 @@ module ModelInfo
 
     def fetch_model_class
       @model_class = params[:model_class].try(:constantize)
+      @model_name = @model_class.to_s.downcase
     end
   end
 end
