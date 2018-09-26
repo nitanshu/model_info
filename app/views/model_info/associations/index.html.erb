@@ -3,10 +3,11 @@
 
   <div class="pull-right">
     <% unless @macro == "has_one" || @macro == "belongs_to" %>
-        <b><%= link_to "Create associative record", association_new_path(param_set), class: 'btn btn-success' %></b>
+        <b><%= link_to "Create associative record", association_new_path, class: 'btn btn-success' %></b>
     <% end %>
   </div>
 </div>
+
 <table class="table table-hover">
   <tr>
     <% @associated_model_class.column_names.each do |k| %>
@@ -22,11 +23,7 @@
                   <%= @associated_model_data.send(d).class=='String' ? @associated_model_data.send(d).truncate(14) : @associated_model_data.send(d).to_s.truncate(14) %>
                 </td>
             <% end %>
-            <td>
-              <%= link_to 'view', association_show_path(page: @page, associated_model_object_id: @associated_model_data), class: 'btn btn-info' %>
-              <%= link_to 'edit', association_edit_path(associated_model_object_id: @associated_model_data), class: 'btn btn-warning' %>
-              <%= link_to 'delete', association_destroy_path(associated_model_object_id: @associated_model_data), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
-            </td>
+            <%= association_actions(@associated_model_data) %>
           </tr>
       <% end %>
   <% else %>
@@ -37,20 +34,13 @@
                   <%= y.send(k.to_sym).class=='String' ? y.send(k.to_sym).truncate(14) : y.send(k.to_sym).to_s.truncate(14) %>
                 </td>
             <% end %>
-            <td>
-              <%= link_to 'view', association_show_path(associated_model_object_id: y, page: @page), class: 'btn btn-info' %>
-              <%= link_to 'edit', association_edit_path(associated_model_object_id: y, page: @page), class: 'btn btn-warning' %>
-              <%= link_to 'delete', association_destroy_path(associated_model_object_id: y), data: {confirm: "Are you sure?"}, method: :delete, class: 'btn btn-danger' %>
-            </td>
+            <%= association_actions(y)%>
           </tr>
       <% end %>
       </table>
-      <div class="downloads">
-        Download Associated
-        Data: <%= link_to 'CSV', download_csv_path(associated_model: @associated_model, model_class: @model_class, model_object_id: @model_object_id), format: :csv %>
-        <%= link_to 'JSON', download_json_path(associated_model: @associated_model, model_class: @model_class, model_object_id: @model_object_id), format: :json %>
-        <%= link_to 'XML', download_xml_path(associated_model: @associated_model, model_class: @model_class, model_object_id: @model_object_id), format: :xml %>
-      </div>
+
+      <%= association_download_actions %>
+
       <div class="clearfix"></div>
       <%= paginate @associated_model_pagination %>
       <%= rel_next_prev_link_tags @associated_model_pagination unless @associated_model_pagination.empty? %>

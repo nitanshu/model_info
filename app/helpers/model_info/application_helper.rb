@@ -27,23 +27,19 @@ module ModelInfo
       end
     end
 
-    def download_actions
-      content_tag :div, class: 'downloads' do
-        capture do
-          concat 'Download: '
-          concat link_to 'CSV', download_csv_path(model_class: @model_class), format: :csv
-          concat ' '
-          concat link_to 'JSON', download_json_path(model_class: @model_class), format: :json
-          concat ' '
-          concat link_to 'XML', download_xml_path(model_class: @model_class), format: :xml
-        end
-      end
-    end
-
+# associations_hash {
+# [:projects, :has_many]=>"Project",
+# [:histories, :has_many]=>"History",
+# [:subordinates, :has_many]=>"Employee"
+# }
     def associations_hash
       relationship_hash ={}, active_record_name=[], klass_name=[]
       model_reflection_on_associations.each do |reflection|
-        reflection.options[:polymorphic] ? active_record_name.push(reflection.active_record.name) : klass_name.push(reflection.klass.name)
+        if reflection.options[:polymorphic]
+          active_record_name.push(reflection.active_record.name)
+        else
+          klass_name.push(reflection.klass.name)
+        end
       end
       relationship_hash = model_reflection_on_associations.map { |x| [x.name, x.macro] }.zip(active_record_name+klass_name).inject({}) { |h, e| h[e.first] = e.last; h }
     end

@@ -21,7 +21,11 @@ module ModelInfo
     def index
       @macro, @page = params[:macro], params[:page]
       @associated_model_data = @model_data.send(@associated_model_name)
-      @macro == 'has_one' || @macro == 'belongs_to' ? @associated_model_pagination = 1 : @associated_model_pagination = @associated_model_data.page(params[:page]).per(10)
+      if @macro == 'has_one' || @macro == 'belongs_to'
+        @associated_model_pagination = 1
+      else
+        @associated_model_pagination = @associated_model_data.page(params[:page]).per(10)
+      end
     end
 
     def create
@@ -52,12 +56,12 @@ module ModelInfo
     private
     def set_variables_in_session
       session['param_set'] =
-        {
-          model_class: params[:model_class],
-          model_object_id: params[:model_object_id],
-          associated_model_class: params[:associated_model_class],
-          associated_model_name: params[:associated_model_name]
-        }
+          {
+              model_class: params[:model_class],
+              model_object_id: params[:model_object_id],
+              associated_model_class: params[:associated_model_class],
+              associated_model_name: params[:associated_model_name]
+          }
     end
 
     def set_instance_variables
