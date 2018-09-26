@@ -1,7 +1,6 @@
 module ModelInfo
   class ApplicationController < ::ApplicationController
     before_action :models_tab
-
     private
     def models_tab
       array=[], @model_array=[]
@@ -19,11 +18,6 @@ module ModelInfo
       params.each do |k, v|
         @model_name = k.to_s if params[k].is_a?(Hash)
       end
-    end
-
-    def fetch_model_class
-      @model_class = params[:model_class].try(:constantize)
-      @model_name = @model_class.to_s.downcase
     end
   end
 end

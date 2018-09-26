@@ -2,7 +2,7 @@ require_dependency "model_info/application_controller"
 
 module ModelInfo
   class ModelsController < ApplicationController
-    before_action :fetch_model_class
+    before_action :model_class_and_name
 
     def display
       @model_class, @page = params[:model_class] || @model_array.try(:first), params[:page] || 1
@@ -44,6 +44,11 @@ module ModelInfo
 
     def permit_params
       params.require(@model_name).permit!
+    end
+
+    def model_class_and_name
+      @model_class = params[:model_class].try(:constantize)
+      @model_name = @model_class.to_s.downcase
     end
   end
 end

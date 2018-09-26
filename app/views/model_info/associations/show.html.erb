@@ -1,4 +1,4 @@
-<h3>View Your Associated Data of <%= params[:associated_model_class] %></h3>
+<h3>View Your Associated Data of <%= @associated_model_class.to_s %></h3>
 <table class="table table-hover table-bordered">
   <tr>
     <th>Attribute</th>
@@ -7,7 +7,7 @@
   <% @associated_model_class.column_names.each do |associated_model_column| %>
       <tr>
         <th><%= associated_model_column %></th>
-        <td><%= @single_associated_data.send(associated_model_column) %></td>
+        <td><%= @associated_model_data.send(associated_model_column) %></td>
       </tr>
   <% end %>
   <tr>
