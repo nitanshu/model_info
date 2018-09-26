@@ -7,16 +7,12 @@ require_dependency "model_info/application_controller"
 # associated_model_name 'projects'
 # associated_model_object_id '1'
 # associated_model_data '#<Project id: nil, name: nil, employee_id: 1, created_at: nil, updated_at: nil, properties: nil>'
-# associated_model_data '#<Project id: nil, name: nil, employee_id: 1, created_at: nil, updated_at: nil, properties: nil>'
 
 module ModelInfo
   class AssociationsController < ApplicationController
     before_action :set_variables_in_session, only: [:index]
     before_action :set_instance_variables
-    # before_action :model_class_and_name, only: [:new, :index, :create]
-    # before_action :set_model_data,  only: [:create, :index, :new]
-    # before_action :associated_model_class_and_name, only: [:new, :index, :create]
-    before_action :set_associated_model_data, only: [:show, :edit]
+    before_action :set_associated_model_data, only: [:show, :edit, :update]
 
     def new
       @associated_model_data = @model_data.send(@associated_model_name).build
