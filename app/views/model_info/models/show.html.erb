@@ -1,2 +1,8 @@
 <h3>View Your <%= @model_class %> Data</h3>
-<%= render partial: 'model_info/shared/show', locals: {model_class: @model_class, model_data: @model_data} %>
+<%= render partial: 'model_info/shared/show',
+           locals:
+                   {
+                           model_class: @model_class,
+                           model_data: @model_data
+                   }
+%>

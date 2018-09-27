@@ -1,2 +1,8 @@
 <h3>View Your Associated Data of <%= @associated_model_class %></h3>
-<%= render partial: 'model_info/shared/show', locals: {model_class: @associated_model_class, model_data: @associated_model_data}%>
+<%= render partial: 'model_info/shared/show',
+           locals:
+                   {
+                           model_class: @associated_model_class,
+                           model_data: @associated_model_data
+                   }
+%>

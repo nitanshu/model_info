@@ -1,11 +1,12 @@
 <h3>Add New Record in <%= @model_class %> </h3>
-
-<%= render partial: 'model_info/shared/form', locals: {
-                                                   model_class: @associated_model_class,
-                                                   model_data: @associated_model_data,
-                                                   url: association_create_path,
-                                                   new: true
-                                           },
+<%= render partial: 'model_info/shared/form',
+           locals:
+                   {
+                           model_class: @associated_model_class,
+                           model_data: @associated_model_data,
+                           url: association_create_path,
+                           new: true
+                   }
 
 %>
 
