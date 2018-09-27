@@ -9,8 +9,8 @@ module ModelInfo
         mount ModelInfo::Engine, at: '/model_info'
       end
 
-      config.paths["db/migrate"].expanded.each do |expanded_path|
-        Rails.application.config.paths["db/migrate"] << expanded_path
+      config.paths['db/migrate'].expanded.each do |expanded_path|
+        Rails.application.config.paths['db/migrate'] << expanded_path
       end
     end
   end
