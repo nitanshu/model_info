@@ -1,3 +1,4 @@
+<%= render 'model_info/shared/flash_messages' unless flash.empty? %>
 <div class='jumbotron'>
   <%= form_for model_data, url: url, method: local_assigns[:new] ? :post : :patch do |f| %>
       <% (model_data.class.column_names - %w(id serialized_options created_at updated_at)).each do |attribute| %>

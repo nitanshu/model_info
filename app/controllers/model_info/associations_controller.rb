@@ -25,6 +25,7 @@ module ModelInfo
       if @associated_model_data.save
         redirect_to association_show_path(associated_model_object_id: @associated_model_data.id)
       else
+        flash[:error] = @associated_model_data.errors.full_messages
         redirect_back(fallback_location: request.referrer)
       end
     end
@@ -36,8 +37,12 @@ module ModelInfo
     end
 
     def update
-      @associated_model_data.update(permit_params)
-      redirect_to association_show_path(associated_model_object_id: params[:associated_model_object_id])
+      if @associated_model_data.update(permit_params)
+        redirect_to association_show_path(associated_model_object_id: params[:associated_model_object_id])
+      else
+        flash[:error] = @associated_model_data.errors.full_messages
+        redirect_back(fallback_location: request.referrer)
+      end
     end
 
     def destroy

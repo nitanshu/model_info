@@ -19,6 +19,7 @@ module ModelInfo
       if @model_data.save
         redirect_to model_show_path(model_class: @model_class, model_object_id: @model_data.id)
       else
+        flash[:error] = @model_data.errors.full_messages
         redirect_back(fallback_location: request.referrer)
       end
     end
@@ -30,8 +31,12 @@ module ModelInfo
     end
 
     def update
-      @model_data.update(permit_params)
-      redirect_to model_show_path(model_class: @model_class, model_object_id: @model_data.id)
+      if @model_data.update(permit_params)
+        redirect_to model_show_path(model_class: @model_class, model_object_id: @model_data.id)
+      else
+        flash[:error] = @model_data.errors.full_messages
+        redirect_back(fallback_location: request.referrer)
+      end
     end
 
     def destroy

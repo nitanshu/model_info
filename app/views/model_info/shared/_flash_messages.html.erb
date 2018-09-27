@@ -1,0 +1,15 @@
+<div id="flash_messages">
+  <%= content_tag(:div, :class => 'alert alert-danger') do %>
+      <%= content_tag :ul do %>
+          <% flash.each do |key, value| %>
+              <% if value.is_a?(Array) %>
+                  <% flash[key].each do |error| %>
+                      <%= content_tag :li, error %>
+                  <% end %>
+              <% else %>
+                  <%= content_tag :li, value %>
+              <% end %>
+          <% end %>
+      <% end %>
+  <% end %>
+</div>
