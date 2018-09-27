@@ -7,8 +7,6 @@ module ModelInfo
           concat link_to 'CSV', download_csv_path(model_class: @model_class), format: :csv
           concat ' '
           concat link_to 'JSON', download_json_path(model_class: @model_class), format: :json
-          concat ' '
-          concat link_to 'XML', download_xml_path(model_class: @model_class), format: :xml
         end
       end
     end

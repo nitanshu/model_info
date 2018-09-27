@@ -34,8 +34,6 @@ module ModelInfo
           concat link_to 'CSV', download_csv_path(association_download_param), format: :csv
           concat ' '
           concat link_to 'JSON', download_json_path(association_download_param), format: :json
-          concat ' '
-          concat link_to 'XML', download_xml_path(association_download_param), format: :xml
         end
       end
     end

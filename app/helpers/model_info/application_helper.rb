@@ -31,11 +31,11 @@ module ModelInfo
       end
     end
 
-# associations_hash {
-# [:projects, :has_many]=>"Project",
-# [:histories, :has_many]=>"History",
-# [:subordinates, :has_many]=>"Employee"
-# }
+    # associations_hash = {
+    # [:projects, :has_many]=>"Project",
+    # [:histories, :has_many]=>"History",
+    # [:subordinates, :has_many]=>"Employee"
+    # }
     def associations_hash
       relationship_hash ={}, active_record_name=[], klass_name=[]
       model_reflection_on_associations.each do |reflection|
