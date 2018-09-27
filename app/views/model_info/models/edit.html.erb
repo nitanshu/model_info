@@ -1,14 +1,7 @@
-<h3>Update Your <%= @model_class.name %> Data</h3>
-<div class='jumbotron'>
-  <%= form_for @model_data, url: model_update_path(model_class: @model_class), method: :patch do |f| %>
-      <% (@model_class.column_names - %w(id serialized_options created_at updated_at)).each do |attribute| %>
-          <div class='form-group'>
-            <%= f.label attribute %>
-            <div class='form-group'>
-              <%= f.text_field attribute, :class => 'form-control' %>
-            </div>
-          </div>
-      <% end %>
-      <%= f.submit 'Save Changes', class: 'btn btn-primary' %>
-  <% end %>
-</div>
+<h3>Update Your <%= @model_class %> Data</h3>
+<%= render partial: 'model_info/shared/edit', locals: {
+                                                    model_class: @model_class,
+                                                    model_data: @model_data,
+                                                    url: model_update_path(model_object_id: @model_data.id)
+                                            }
+%>

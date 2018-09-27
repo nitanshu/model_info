@@ -1,16 +1,8 @@
 <h3>Add New Record in <%= model_class %> </h3>
 
 <div class='jumbotron'>
-  <%= form_for model_data, url: model_create_path, method: :post, class: 'form' do |f| %>
-      <% (model_data.class.column_names - %w(id serialized_options created_at updated_at)).each do |attribute| %>
-          <div class='form-group'>
-            <%= f.label attribute %>
-            <%= hidden_field_tag :model_class, model_class %>
-            <div class='form-group'>
-              <%= f.text_field attribute, :class => 'form-control' %>
-            </div>
-          </div>
-      <% end %>
+  <%= form_for model_data, url: url, method: :post, class: 'form' do |f| %>
+      <%= render partial: 'model_info/shared/form', locals: {model_class: model_class, model_data: model_data, f: f} %>
       <%= f.submit 'Create Record', class: 'btn btn-primary' %>
   <% end %>
 </div>

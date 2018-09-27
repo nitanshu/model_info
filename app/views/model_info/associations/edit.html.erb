@@ -1,14 +1,7 @@
 <h3>Update Your Associated Data of <%= @associated_model_class %> </h3>
-<div class='jumbotron'>
-  <%= form_for @associated_model_data, url: association_update_path(associated_model_object_id: @associated_model_data), method: :patch do |f| %>
-      <% (@associated_model_data.attribute_names - %w(id serialized_options created_at updated_at)).each do |associated_model_column| %>
-          <div class='form-group'>
-            <%= f.label associated_model_column %>
-            <div class='form-group'>
-              <%= f.text_field associated_model_column, :class => 'form-control' %>
-            </div>
-          </div>
-      <% end %>
-      <%= f.submit 'Save Changes', class: 'btn btn-primary' %>
-  <% end %>
-</div>
+<%= render partial: 'model_info/shared/edit', locals: {
+                                                    model_class: @associated_model_class,
+                                                    model_data: @associated_model_data,
+                                                    url: association_update_path(associated_model_object_id: @associated_model_data.id),
+                                            }
+%>

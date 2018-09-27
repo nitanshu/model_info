@@ -1,4 +1,8 @@
-<%= render partial: 'model_info/shared/new', locals: {model_class: @model_class, model_data: @model_data}%>
+<%= render partial: 'model_info/shared/new', locals: {
+                                                   model_class: @model_class,
+                                                   model_data: @model_data,
+                                                   url: model_create_path
+                                           } %>
 
 
 

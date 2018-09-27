@@ -74,6 +74,7 @@ module ModelInfo
     end
 
     def set_associated_model_data
+      logger.info "=-===========#{params[:associated_model_object_id]}==="
       @associated_model_data = @associated_model_class.find(params[:associated_model_object_id])
     end
 
