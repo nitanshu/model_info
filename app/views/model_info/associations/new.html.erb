@@ -1,18 +1,4 @@
-<h3>Add New Record in <%= @associated_model_class %></h3>
-<div class='jumbotron'>
-  <%= form_for @associated_model_data, url: association_create_path, method: :post do |f| %>
-      <% (@associated_model_data.class.column_names - %w(id created_at updated_at serialized_options)).each do |associated_model_attribute| %>
-          <div class="form-group">
-            <%= f.label associated_model_attribute %>
-            <div class='form-group'>
-              <%= f.text_field associated_model_attribute, :class => 'form-control' %>
-            </div>
-          </div>
-      <% end %>
-      <%= f.submit 'Save Changes', class: 'btn btn-primary' %>
-  <% end %>
-</div>
-
+<%= render partial: 'model_info/shared/new', locals: {model_class: @associated_model_class, model_data: @associated_model_data}%>
 
 
 

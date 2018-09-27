@@ -1,19 +1,2 @@
 <h3>View Your <%= @model_class %> Data</h3>
-<table class='table table-hover table-bordered'>
-  <tr>
-    <th>Attribute</th>
-    <th>Value</th>
-  </tr>
-  <% @model_class.column_names.each do |model_column_name| %>
-      <tr>
-        <th><%= model_column_name %></th>
-        <td><%= @model_data.send(model_column_name) %></td>
-      </tr>
-  <% end %>
-  <tr>
-    <th>Actions</th>
-    <td>
-      <%= link_to 'Back', :back %>
-    </td>
-  </tr>
-</table>
+<%= render partial: 'model_info/shared/show', locals: {model_class: @model_class, model_data: @model_data} %>
