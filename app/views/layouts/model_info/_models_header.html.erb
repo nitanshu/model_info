@@ -3,3 +3,6 @@
       <li class='models_tab' id="<%= model_class %>"><%= link_to model_class, model_display_path(model_class: model_class) %></li>
   <% end %>
 </ul>
+<script>
+  $('#'+'<%= @model_class %>').addClass('active');
+</script>
