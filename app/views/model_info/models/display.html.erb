@@ -1,12 +1,12 @@
-<div class="top_block col-md-12">
-  <h3 class="pull-left"><%= @model_class %></h3>
+<div class='top_block col-md-12'>
+  <h3 class='pull-left'><%= @model_class %></h3>
 
-  <div class="pull-right">
+  <div class='pull-right'>
     <b><%= link_to 'Add new Record', model_new_path(model_class: @model_class), class: 'btn btn-success' %></b>
   </div>
 </div>
 
-<table class="table table-hover">
+<table class='table table-hover'>
   <tr>
     <% model_column_names.each do |column_name| %>
         <th><%= column_name %></th>
@@ -43,7 +43,7 @@
 <%= model_download_actions %>
 
 <nav>
-  <ul class="pagination">
+  <ul class='pagination'>
     <li><%= paginate @model_pagination %></li>
     <%= rel_next_prev_link_tags @model_pagination unless @model_pagination.empty? %>
   </ul>

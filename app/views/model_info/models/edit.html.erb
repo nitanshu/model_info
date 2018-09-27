@@ -1,14 +1,14 @@
 <h3>Update Your <%= @model_class.name %> Data</h3>
-<div class="jumbotron">
+<div class='jumbotron'>
   <%= form_for @model_data, url: model_update_path(model_class: @model_class), method: :patch do |f| %>
-      <% (@model_class.column_names - %w(serialized_options created_at updated_at)).each do |resource_field| %>
-          <div class="form-group">
-            <%= f.label resource_field %>
-            <div class="form-group">
-              <%= f.text_field resource_field, :class => 'form-control' %>
+      <% (@model_class.column_names - %w(id serialized_options created_at updated_at)).each do |attribute| %>
+          <div class='form-group'>
+            <%= f.label attribute %>
+            <div class='form-group'>
+              <%= f.text_field attribute, :class => 'form-control' %>
             </div>
           </div>
       <% end %>
-      <%= f.submit 'Save Changes', class: "btn btn-primary" %>
+      <%= f.submit 'Save Changes', class: 'btn btn-primary' %>
   <% end %>
 </div>

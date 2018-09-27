@@ -1,19 +1,15 @@
 <h3>Add New Record in <%= @associated_model_class %></h3>
-<div class="jumbotron">
+<div class='jumbotron'>
   <%= form_for @associated_model_data, url: association_create_path, method: :post do |f| %>
-      <% (@associated_model_data.class.column_names - %w(id created_at updated_at serialized_options)).each do |associated_model_column| %>
+      <% (@associated_model_data.class.column_names - %w(id created_at updated_at serialized_options)).each do |associated_model_attribute| %>
           <div class="form-group">
-            <%= f.label associated_model_column %>
-            <%= hidden_field_tag :associated_model_class, params[:associated_model_class] %>
-            <%= hidden_field_tag :associated_model_name, params[:associated_model_name] %>
-            <%= hidden_field_tag :model_class, params[:model_class] %>
-            <%= hidden_field_tag :model_object_id, params[:model_object_id] %>
-            <div class="form-group">
-              <%= f.text_field associated_model_column, :class => 'form-control' %>
+            <%= f.label associated_model_attribute %>
+            <div class='form-group'>
+              <%= f.text_field associated_model_attribute, :class => 'form-control' %>
             </div>
           </div>
       <% end %>
-      <%= f.submit 'Save Changes', class: "btn btn-primary" %>
+      <%= f.submit 'Save Changes', class: 'btn btn-primary' %>
   <% end %>
 </div>
 

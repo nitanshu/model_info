@@ -12,6 +12,10 @@ module ModelInfo
       @model_class
     end
 
+    def associated_model_column_names
+      @associated_model_class.column_names
+    end
+
     def model_column_value(model_data, model_column_name)
       column_value = model_data.send(model_column_name.to_sym)
       column_value.class =='String' ? column_value.truncate(14) : column_value.to_s.truncate(14)
