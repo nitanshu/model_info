@@ -1,6 +1,0 @@
-<div class='jumbotron'>
-  <%= form_for model_data, url: url, method: :patch do |f| %>
-      <%= render partial: 'model_info/shared/form', locals: {model_class: model_class, model_data: model_data, f: f} %>
-      <%= f.submit 'Save Changes', class: 'btn btn-primary' %>
-  <% end %>
-</div>

@@ -1,5 +1,5 @@
 <h3>Update Your <%= @model_class %> Data</h3>
-<%= render partial: 'model_info/shared/edit', locals: {
+<%= render partial: 'model_info/shared/form', locals: {
                                                     model_class: @model_class,
                                                     model_data: @model_data,
                                                     url: model_update_path(model_object_id: @model_data.id)

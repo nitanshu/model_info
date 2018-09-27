@@ -1,9 +1,14 @@
-<% (model_data.class.column_names - %w(id serialized_options created_at updated_at)).each do |attribute| %>
-    <div class='form-group'>
-      <%= f.label attribute %>
-      <%= hidden_field_tag :model_class, model_class %>
-      <div class='form-group'>
-        <%= f.text_field attribute, :class => 'form-control' %>
-      </div>
-    </div>
-<% end %>
+<div class='jumbotron'>
+  <%= form_for model_data, url: url, method: :patch do |f| %>
+      <% (model_data.class.column_names - %w(id serialized_options created_at updated_at)).each do |attribute| %>
+          <div class='form-group'>
+            <%= f.label attribute %>
+            <%= hidden_field_tag :model_class, model_class %>
+            <div class='form-group'>
+              <%= f.text_field attribute, :class => 'form-control' %>
+            </div>
+          </div>
+      <% end %>
+      <%= f.submit 'Save Changes', class: 'btn btn-primary' %>
+  <% end %>
+</div>
