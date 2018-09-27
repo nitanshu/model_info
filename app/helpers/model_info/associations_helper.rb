@@ -1,11 +1,15 @@
 module ModelInfo
   module AssociationsHelper
 
+    def associated_model_column_names
+      @associated_model_class.column_names
+    end
+
     def association_download_param
       {
-          associated_model_name: @associated_model_name,
-          model_class: @model_class,
-          model_object_id: @model_object_id
+        associated_model_name: @associated_model_name,
+        model_class: @model_class,
+        model_object_id: @model_object_id
       }
     end
 

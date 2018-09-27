@@ -6,7 +6,7 @@ module ModelInfo
 
     def download_csv
       csv_string = CSV.generate do |csv|
-        csv <<  @model_class.column_names
+        csv << @model_class.column_names
         @model_data.each do |model|
           values = model.attributes.values
           csv.add_row values

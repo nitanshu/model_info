@@ -21,10 +21,10 @@
               <%= model_column_value(model_data, model_column_name) %>
             </td>
         <% end %>
-        <%= actions(model_data) %>
+        <%= model_actions(model_data) %>
         <td>
           <% if associations_hash.empty? %>
-              <%= "Sorry no association exist for #{model_name}" %>
+              <%= "Sorry no association exist for #{@model_class}" %>
           <% else %>
               <% associations_hash.each do |association_name_and_macro, model_class| %>
                   <%= link_to "#{association_name_and_macro.last} #{association_name_and_macro.first} |",

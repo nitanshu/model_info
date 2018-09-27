@@ -34,7 +34,7 @@
                   <%= y.send(k.to_sym).class=='String' ? y.send(k.to_sym).truncate(14) : y.send(k.to_sym).to_s.truncate(14) %>
                 </td>
             <% end %>
-            <%= association_actions(y)%>
+            <%= association_actions(y) %>
           </tr>
       <% end %>
       </table>
