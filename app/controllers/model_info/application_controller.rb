@@ -1,5 +1,9 @@
 module ModelInfo
   class ApplicationController < ::ApplicationController
+    #========================= Example =================================#
+    #class Employee < ApplicationRecord
+    #  has_many :projects
+    #end
     #============================ Naming Conventions ====================#
     # model_class 'Employee'
     # model_name 'employee'
@@ -18,7 +22,7 @@ module ModelInfo
       Rails.application.eager_load!
       array=ActiveRecord::Base.descendants.collect { |x| x.to_s if x.table_exists? }.compact
       array.each do |x|
-        if x.split('::').last.split('_').first != "HABTM"
+        if x.split('::').last.split('_').first != 'HABTM'
           @model_array.push(x)
         end
         @model_array.delete('ActiveRecord::SchemaMigration')

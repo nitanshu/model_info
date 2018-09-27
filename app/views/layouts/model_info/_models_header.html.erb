@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs">
+<ul class='nav nav-tabs'>
   <% for model_class in @model_array %>
       <li class='models_tab' id="<%= model_class %>"><%= link_to model_class, model_display_path(model_class: model_class) %></li>
   <% end %>
