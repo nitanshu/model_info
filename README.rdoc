@@ -18,4 +18,4 @@ After successful installation of gem the UI interface will be available on
 
 your_application_url */model_info/models*
 
-example: *localhost:3000/model_info*
+example: localhost:3000/model_info
