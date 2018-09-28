@@ -1,7 +1,7 @@
 = ModelInfo
 
-ModelInfo gem provides all *models*(available in your application including engine's model) CRUD and all *associations* of each model and their CRUD.
-
+ModelInfo provides the UI interface for the CRUD of all models (including engine's) and their associated models.
+It also provides you the download link for CSV and JSON format of Model's data.
 == Installation
 
 Add this line to your application's Gemfile:
@@ -14,39 +14,8 @@ And then execute:
 
 == Usage
 
-To use this gem you just need to mount it in your route file *config/routes.rb*
-
-<tt> mount ModelInfo::Engine => '/model_info' </tt>
-
-Then to go to the dashboard hit the url as:
+After successful installation of gem the UI interface will be available on
 
 your_application_url */model_info/models*
 
-== Working Status
-
-The download option for EXCEL would be provided in an initializer file to make it true or false and also I will provide site logo and title option in an initializer file.
-
-Flash notification will be implemented with *pnotify* gem.
-
-== Bugs
-
-This engine breaks on polymorphic association.
-
-I am not handling the exceptions so it will break if you will fill bad data or something a model validates upon.
-
-If your are using *devise* or *active_admin* then you need to be aware of layout and making it redirect to the page you want if there is any url hit without user login
-
- for example:
-
- <tt>
- layout :determine_layout
-
- protected
- def determine_layout
-   current_user.nil? ? "devise":"application"
- end
- </tt>
-
-It will collide with my layout so avoid doing this or make your invalid request redirect to the right path.
-
-*NOTE*: For now this gem properly supports rails < 5
+example: *localhost:3000/model_info*
