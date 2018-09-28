@@ -32,12 +32,14 @@ module ModelInfo
     end
 
     def association_download_actions
-      content_tag :div, class: 'association_downloads' do
-        capture do
-          concat 'Download Associated Model Data: '
-          concat link_to 'CSV', download_csv_path(association_download_param), format: :csv
-          concat ' '
-          concat link_to 'JSON', download_json_path(association_download_param), format: :json
+      if @associated_model_class.any?
+        content_tag :div, class: 'association_downloads' do
+          capture do
+            concat 'Download Associated Model Data: '
+            concat link_to 'CSV', download_csv_path(association_download_param), format: :csv
+            concat ' '
+            concat link_to 'JSON', download_json_path(association_download_param), format: :json
+          end
         end
       end
     end
