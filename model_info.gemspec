@@ -15,6 +15,6 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/nitanshu/model_info'
   s.files = Dir['{app,config,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
-  s.add_runtime_dependency 'bootstrap'
-  s.add_runtime_dependency 'kaminari'
+  s.add_runtime_dependency 'bootstrap', '~> 5.2.3'
+  s.add_runtime_dependency 'kaminari', '~>1.2.2'
 end
