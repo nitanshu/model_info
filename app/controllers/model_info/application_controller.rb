@@ -1,14 +1,14 @@
 module ModelInfo
   class ApplicationController < ::ApplicationController
     #========================= Example =================================#
-    #class Employee < ApplicationRecord
+    # class Employee < ApplicationRecord
     #  has_many :projects
-    #end
+    # end
     #============================ Naming Conventions ====================#
     # model_class 'Employee'
     # model_name 'employee'
     # model_object_id '1'
-    # model_data '#<Employee id: 1, name: "rooh", salary: 138001, month: "jan", created_at: "2018-08-29 07:47:43", updated_at: "2018-09-12 09:35:09", manager_id: 8, lock_version: 4>'
+    # model_data '#<Employee id: 1, name: "Alen", salary: 10000, month: "Jan",manager_id: 8, lock_version: 4>'
     # associated_model_class 'Project'
     # associated_model_name 'projects'
     # associated_model_object_id '1'
@@ -17,15 +17,15 @@ module ModelInfo
     before_action :models_tab
 
     private
+
     def models_tab
-      array=[], @model_array=[]
+      @model_array = []
       Rails.application.eager_load!
-      array=ActiveRecord::Base.descendants.collect { |x| x.to_s if x.table_exists? }.compact
-      array.each do |x|
-        if x.split('::').last.split('_').first != 'HABTM'
-          @model_array.push(x)
-        end
+      model_names = ActiveRecord::Base.descendants.collect { |model| model.to_s if model.table_exists? }.compact
+      model_names.each do |model_name|
+        @model_array.push(model_name) if model_name.split('::').last.split('_').first != 'HABTM'
         @model_array.delete('ActiveRecord::SchemaMigration')
+        $model_array = @model_array
       end
     end
   end

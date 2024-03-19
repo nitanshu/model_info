@@ -3,10 +3,11 @@ require_dependency 'model_info/application_controller'
 module ModelInfo
   class ModelsController < ApplicationController
     before_action :model_class_and_name
-    before_action :set_model_data, only: [:show, :edit, :update]
+    before_action :set_model_data, only: %i[show edit update]
 
-    def display
-      @model_class, @page = params[:model_class] || @model_array.try(:first), params[:page] || 1
+    def index
+      @model_class = params[:model_class] || @model_array&.first
+      @page = params[:page] || 1
       @model_pagination = @model_class.constantize.page(@page).per(10)
     end
 
@@ -24,11 +25,9 @@ module ModelInfo
       end
     end
 
-    def edit
-    end
+    def edit; end
 
-    def show
-    end
+    def show; end
 
     def update
       if @model_data.update(permit_params)
@@ -56,7 +55,7 @@ module ModelInfo
     end
 
     def set_model_data
-      @model_data=@model_class.find(params[:model_object_id])
+      @model_data = @model_class.find(params[:model_object_id])
     end
   end
 end

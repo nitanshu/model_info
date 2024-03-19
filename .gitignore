@@ -11,3 +11,5 @@ test/
 model_info-*.*.*.gem
 .ruby-version
 .ruby-gemset
+.vscode
+.DS_store
