@@ -1,20 +1,19 @@
 ModelInfo::Engine.routes.draw do
-  root to: 'models#display'
+  root to: 'models#index'
 
-  Rails.application.eager_load!
-  model_names = ActiveRecord::Base.descendants.collect { |model| model.to_s if model.table_exists? }.compact
-
-  # models_tab =['User', 'Project']
-  model_names.each do |model|
-    get "api/models/#{model}", to: 'models#index'
-    get "api/model/#{model}/new", to: 'models#new'
-    post "api/model/#{model}/create", to: 'models#create'
-    get "api/model/#{model}/show", to: 'models#show'
-    get "api/model/#{model}/edit", to: 'models#edit'
-    patch "api/model/#{model}/update", to: 'models#update'
-    delete "api/model/#{model}/destroy", to: 'models#destroy'
+  namespace :api do
+    namespace :v1 do
+      Rails.application.eager_load!
+      model_names = ActiveRecord::Base.descendants.collect { |model| model.to_s if model.table_exists? }.compact
+      model_names.delete('ActiveStorage::Blob')
+      model_names.delete('ActiveStorage::Attachment')
+      model_names.each do |model|
+        get model, to: 'models#index'
+        post model, to: 'models#create'
+        put model, to: 'models#update'
+      end
+    end
   end
-
   get 'models', to: 'models#index'
   get 'model_new', to: 'models#new'
   post 'model_create', to: 'models#create'
