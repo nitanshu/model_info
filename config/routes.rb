@@ -7,10 +7,13 @@ ModelInfo::Engine.routes.draw do
       model_names = ActiveRecord::Base.descendants.collect { |model| model.to_s if model.table_exists? }.compact
       model_names.delete('ActiveStorage::Blob')
       model_names.delete('ActiveStorage::Attachment')
+      model_names = model_names.map(&:pluralize).map(&:downcase)
       model_names.each do |model|
         get model, to: 'models#index'
         post model, to: 'models#create'
-        put model, to: 'models#update'
+        get "#{model}/:id", to: 'models#show'
+        put "#{model}/:id", to: 'models#update'
+        delete "#{model}/:id", to: 'models#destroy'
       end
     end
   end

@@ -5,19 +5,12 @@ module ModelInfo
     module V1
       # :nodoc
       class BaseController < ::ApplicationController
-        before_action :models
-
-        private
-
-        def models
-          @model_array = []
+        def models_array
           Rails.application.eager_load!
           model_names = ActiveRecord::Base.descendants.collect { |model| model.to_s if model.table_exists? }.compact
-          model_names.each do |model_name|
-            @model_array.push(model_name) if model_name.split('::').last.split('_').first != 'HABTM'
-            @model_array.delete('ActiveRecord::SchemaMigration')
-            $model_array = @model_array
-          end
+          model_names.delete('ActiveStorage::Blob')
+          model_names.delete('ActiveStorage::Attachment')
+          @model_array = model_names.map(&:pluralize).map(&:downcase)
         end
       end
     end
