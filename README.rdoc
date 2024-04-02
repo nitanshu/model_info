@@ -2,6 +2,19 @@
 
 ModelInfo provides the UI interface for the CRUD of all models (including engine's) and their associated models.
 It also provides you the download link for CSV and JSON format of Model's data.
+
+== API 
+
+It provides the API support for all models  to fetch the model information suppose we have a model Article
+
+Then the API's will be
+- GET    /model_info/api/v1/articles(.:format) 
+- POST   /api/v1/articles(.:format)        
+- GET    /api/v1/articles/:id(.:format)    
+- PUT    /api/v1/articles/:id(.:format)
+- DELETE /api/v1/articles/:id(.:format)    
+
+
 == Installation
 
 Add this line to your application's Gemfile:
@@ -19,3 +32,5 @@ After successful installation of gem the UI interface will be available on
 your_application_url */model_info/models*
 
 example: localhost:3000/model_info
+
+To use the API of model_info Please curl the request or use any API platform for using this.
