@@ -1,6 +1,8 @@
 = ModelInfo
 
-ModelInfo provides the UI interface for the CRUD of all models (including engine's) and their associated models.
+ModelInfo provides the API support for all models to fetch the model information.
+ 
+ModelInfo also provides the UI interface for the CRUD of all models (including engine's) and their associated models.
 It also provides you the download link for CSV and JSON format of Model's data.
 
 == API 
